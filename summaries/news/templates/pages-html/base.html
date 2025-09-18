@@ -20,25 +20,23 @@
      // для навбара 
     document.addEventListener('DOMContentLoaded', function() {
        
-        const currentUrl = window.location.pathname;
-        const navLinks = document.querySelectorAll('.nav-link');
-        
-        navLinks.forEach(link => {
-            if (link.href.includes(currentUrl)) {
-                link.classList.add('active');
+        const correntPath = document.location.pathname
+        const selectorsNavLink =  document.querySelectorAll('.nav-link')
+
+        selectorsNavLink.forEach(link =>{
+            if(link.href.includes(correntPath)){
+                link.classList.add('active')
             }
-        });
+        })
         
-        // Анимация поиска
-        const searchInput = document.querySelector('input[name="q"]');
-        if (searchInput) {
-            searchInput.addEventListener('focus', () => {
-                searchInput.parentElement.style.transform = 'scale(1.02)';
-            });
-            
-            searchInput.addEventListener('blur', () => {
-                searchInput.parentElement.style.transform = 'scale(1)';
-            });
+       const selectorSearch = document.querySelector('input[name=q]')
+        if(selectorSearch){
+            document.addEventListener('focus', () => {
+                selectorSearch.parentElement.style.transform = 'scale(1.09rem)'
+            })
+            document.addEventListener('blur', () => {
+                selectorSearch.parentElement.style.transform = 'scale(1rem)'
+            })
         }
     });
     </script>

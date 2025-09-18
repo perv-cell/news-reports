@@ -8,57 +8,51 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Основное меню -->
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <!-- Самые популярные новости -->
+
                 <li class="nav-item">
                     <a class="nav-link active" href="{% url 'popular_news' %}">
                         <i class="bi bi-fire me-1"></i>Популярные
                     </a>
                 </li>
 
-                <!-- Новости на сегодня -->
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'today_news' %}">
                         <i class="bi bi-calendar-day me-1"></i>Сегодня
                     </a>
                 </li>
 
-                <!-- Популярное вчера -->
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'yestarday_news' %}">
                         <i class="bi bi-calendar-minus me-1"></i>Вчера
                     </a>
                 </li>
 
-                <!-- Выпадающее меню с категориями -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                         <i class="bi bi-grid me-1"></i>Категории
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="">Политика</a></li>
-                        <li><a class="dropdown-item" href="">Спорт</a></li>
-                        <li><a class="dropdown-item" href="">Технологии</a></li>
+                        <li><a class="dropdown-item" href="{% url 'political_news' %}">Политика</a></li>
+                        <li><a class="dropdown-item" href="{% url 'sports_news' %}">Спорт</a></li>
+                        <li><a class="dropdown-item" href="{% url 'tetechnological_news' %}">Технологии</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="">Все категории</a></li>
+                        <li><a class="dropdown-item" href="{% url 'popular_news' %}">Все категории</a></li>
                     </ul>
                 </li>
             </ul>
 
-            <!-- Поиск -->
             <form class="d-flex me-2" action="{% url 'search_news' %}" method="get">
                 <div class="input-group">
                     <input type="search" name="q" class="form-control" placeholder="Поиск новостей..." 
                            aria-label="Search" required>
                     <button class="btn btn-light" type="submit">
-                        <i class="bi bi-search"></i>
+                        <i class="bi bi-search">Искать</i>
                     </button>
                 </div>
             </form>
 
-            <!-- Правая часть (пользователь) -->
             <div class="navbar-nav">
                 {% if user.is_authenticated %}
                 <div class="nav-item dropdown">
@@ -66,7 +60,6 @@
                         <i class="bi bi-person-circle me-1"></i>{{ user.username }}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="">Профиль</a></li>
                         <li><a class="dropdown-item" href="">Сохраненное</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="">Выйти</a></li>
@@ -127,7 +120,6 @@
     transform: scale(1.02);
 }
 
-/* Анимация для иконок */
 .bi {
     transition: transform 0.2s ease;
 }
@@ -136,7 +128,6 @@
     transform: scale(1.2);
 }
 
-/* Адаптивность */
 @media (max-width: 768px) {
     .input-group {
         min-width: 100%;
