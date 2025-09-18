@@ -9,6 +9,8 @@ class MainPage(View):
             'pages-html/main.html'
         )
 
+# --------------- новости по датам  ---------------------- 
+
 class PopularNews(View):
     def get(self, request, *args, **kwargs):
         return render(
@@ -37,6 +39,8 @@ class SearcNews(View):
             'pages-html/searchPage.html'
         )
 
+# --------------- категории ----------------------   
+
 class PoliticalNews(View):
     def get(self,request, *args ,**kwargs):
         return render(
@@ -57,10 +61,45 @@ class SportsNews(View):
             request,
             'pages-html/sports.html'
         ) 
-
+# --------------- при входи порльзователя при сохранении в избранное ссылки на новости будут сохраняться  ----------------------   
 class SaveNews(View):
     def get(self,request, *args ,**kwargs):
         return render(
             request,
             'pages-html/save-news.html'
-        )        
+        )
+# --------------- для входа ----------------------     
+class SignIn(View):
+    def get(self,request ,*args ,**kwargs):
+        return render(
+            request,
+            'pages-html/signin.html'
+        )
+
+class LogIn(View):
+    def get(self,request ,*args ,**kwargs):
+        return render(
+            request,
+            'pages-html/login.html'
+        )      
+
+# -------------------футер ------------------------
+class Contact(View):
+    def get(self,request, *args ,**kwargs):
+        return render(
+            request,
+            'pages-html/contact.html'
+        )  
+
+class Support(View):
+    def get(self,request, *args ,**kwargs):
+        return render(
+            request,
+            'pages-html/support.html'
+        )     
+class PoliticalConf(View):
+    def get(self,request, *args ,**kwargs):
+        return render(
+            request,
+            'pages-html/political-conf.html'
+        )                        

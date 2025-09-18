@@ -11,4 +11,9 @@ urlpatterns = [
     path('sports-news', views.SportsNews.as_view(), name='sports_news'),
     path('search-news', views.SearcNews.as_view(), name='search_news'),
     path('save-news', views.SaveNews.as_view(), name='save_news'),
+    path('contact', views.Contact.as_view(), name='contact'),
+    path('support', views.Support.as_view(), name='support'),
+    path('political-conf', views.PoliticalConf.as_view(), name='political_conf'),
+    path('signin', views.SignIn.as_view(), name='signin'),
+    path('login', views.LogIn.as_view(), name='login'),  
 ]
