@@ -1,0 +1,14 @@
+
+{% extends './base.html' %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block header %} {{title}} {% endblock header%}
+{% block body %}
+    {% if data_of_timatic %}
+        {% for data in data_of_timatic %}
+            {% include 'components/card.html' %}
+    {% else %}
+        <p>Пока новостей нет</p>    
+    {% endif %}
+{% endblock body %}

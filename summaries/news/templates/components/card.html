@@ -1,0 +1,50 @@
+<div class="border-card">
+    <div class="card-image">
+    {% if data.image_url %}    
+        <img src="{{ image_url }}" alt="Картинка доступна на сайте источника">
+    {% else %}
+        <p>Изображение не найдено</p> 
+    {% endif %}       
+    </div>
+    <div class="card-text">
+        <div class="text-title">
+        {% if data.title_text %}  
+            {{title_text}}
+        {% else %}
+            <p>Заголовок новости отсутсвует</p> 
+        {% endif %} 
+        </div>
+        <div class="text-source">
+        {% if data.text_source %}  
+            <i>Ссылка на источник:</i>
+            <a href={{text_source}}>
+        {% else %}
+            <p>Источник скрыл новость</p> 
+        {% endif %} 
+        </div>
+        <div class="text-time">
+            {% if data.text_time %}  
+                {{text_time}}
+            {% else %}
+                <p>Новость недели</p> 
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+
+.border-card{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap:10px;
+    border: 3px solid green;
+    box-shadow: 3px 4px 8px greenyellow;
+    border-radius: 5px; 
+    width: 30%;
+    margin:10px;   
+}
+
+</style>

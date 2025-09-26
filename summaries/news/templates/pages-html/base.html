@@ -5,15 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <title>{% block title %} {% endblock %}</title>
+    <title>{{title}}</title>
 </head>
 <body>
-    {% include 'components/navbar.html' %}
-    {% block body %}
-    {% endblock%}
-    {% include 'components/footer.html' %}
+    <div class="body-base">
+        {% include 'components/navbar.html' %}
+        <div class="headers">{% block header %} {% endblock %}</div>
+        <main>
+            <div class="cards">
+            {% block body %}
+            {% endblock %}
+            </div>
+            <div class="news-customer-analysis">
+            {% block newsclient %}
+            {% endblock %}
+            </div>
+        </main>
+        
+        {% include 'components/footer.html' %}
+    </div>
 </body>
-</html>
+<style>
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+             
+.body-base {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+        
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    width: 100%;  
+}
+
+.cards{
+    border-radius: 5px;
+    border: 3px solid black;
+    box-shadow: 4px 4px 8px rgb(46, 46, 209);
+    width: 70%;
+    min-height: 70vh; 
+}
+.news-customer-analysis{
+    border-radius: 5px;
+    border: 3px solid black;
+    box-shadow: 4px 4px 8px rgb(46, 46, 209);
+    width: 25;
+}
+
+.headers {
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 30px 0;
+    color: #333;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+</style>
+
 
 
 <script>
