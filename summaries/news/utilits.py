@@ -1,12 +1,14 @@
 import httpx
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
-import os
+import logging
 import fmpsdk
 from dotenv import load_dotenv
 from asgiref.sync import sync_to_async
+from django.urls import reverse
 import asyncio
 
+logger = logging.getLogger(__name__)
 
 # функция для парсинга с сайта https://www.mk.ru универсальная только для его тем, но не для других источников.
 
@@ -36,23 +38,40 @@ async def fetch_find_data_with_wwwmkru(day="", month="", year="", topic='economi
 
     soup = BeautifulSoup(response.text, 'html.parser')
     main_contents = soup.find_all('ul', class_="article-listing__day-list")
-    list_ads:list[list] = [] 
-    list_elements = [] # сколько просмотров на сайте, картинка, заголовок, основной текст, 
+    views_number = 0
+    list_ads:list[dict] = [] 
     if main_contents:
         for main_content in main_contents:
             for ad in main_content.find_all('li', class_='article-listing__item'):
                 views_peaple_html = ad.find('span', class_='meta__text')
-                views_peaple_text = views_peaple_html.get_text(strip=True)
+                views_peaple_text = views_peaple_html.get_text(strip=True) if views_peaple_html else ""
+                views_number = 0
+                if views_peaple_text:
+                    # Извлекаем все цифры из строки
+                    digits = ''.join(filter(str.isdigit, views_peaple_text))
+                    if digits:
+                        views_number = int(digits)
+                    else:
+                        views_number = 0
                 picture_ad = ad.find('img', class_='listing-preview__image-content')
                 img_url = picture_ad.get('src')
                 header_ad = ad.find('h3' ,class_='listing-preview__title')
                 header_ad_text = header_ad.get_text(strip=True)
                 body_ad = ad.find('p' ,class_='listing-preview__desc')
                 body_ad_text = body_ad.get_text(strip=True)
-                author = ad.find('a' ,class_='article-preview__author')
-                sourse = 'https://www.mk.ru/{topic}/'
-                list_elements = [views_peaple_text,img_url,header_ad_text,body_ad_text,author,sourse]
-                list_ads.append(list_elements)
+                author = str(ad.find('a' ,class_='article-preview__author'))
+                source = f'https://www.mk.ru/{topic}/'
+                dict_elements = {
+                    'title':header_ad_text,
+                    'image_url':img_url,
+                    'main_text':body_ad_text,
+                    'author':author,
+                    'source':source,
+                    'views':views_number,
+                    'topic':topic,
+                    'save_peaple_id':'parser',
+                }
+                list_ads.append(dict_elements)
 
     return list_ads
 
@@ -68,3 +87,44 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
+
+
+
+#  для пагинации 
+def generate_pagination_urls(page_obj, count_page, name_page_revers='MainPage',name_page_revers_index='MainPagePagination'):
+        urls = {}
+        
+        if page_obj.has_previous():
+            prev_page = page_obj.previous_page_number()
+            if prev_page == 1:
+                urls['previous'] = {'url': reverse(name_page_revers), 'title': 'Популярные новости'}
+            else:
+                urls['previous'] = {
+                    'url': reverse(name_page_revers_index, args=[prev_page]),
+                    'text': f'Страница {prev_page}'
+                }
+        
+        if page_obj.has_next():
+            next_page = page_obj.next_page_number()
+            urls['next'] = {
+                'url': reverse(name_page_revers_index, args=[next_page]),
+                'title': f'Страница {next_page}' 
+            }
+
+        urls['page_range'] = []
+        for i in range(1, count_page + 1):
+            if i == 1:
+                urls['page_range'].append({
+                    'number': i,
+                    'url': reverse(name_page_revers),
+                    'current': i == page_obj.number
+                })
+            else:
+                urls['page_range'].append({
+                    'number': i,
+                    'url': reverse(name_page_revers_index, args=[i]),
+                    'current': i == page_obj.number
+                }
+            )
+        return urls 

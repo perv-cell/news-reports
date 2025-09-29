@@ -1,3 +1,355 @@
-INFO 2025-09-26 20:12:19,462 autoreload 16996 3704 Watching for file changes with StatReloader
-INFO 2025-09-26 20:28:44,398 autoreload 16996 3704 C:\Users\Ilia\news-reports\summaries\newsReports\settings.py changed, reloading.
-INFO 2025-09-26 20:28:45,010 autoreload 16716 5052 Watching for file changes with StatReloader
+
+INFO 2025-09-27 18:16:09,977 autoreload 7372 2228 Watching for file changes with StatReloader
+INFO 2025-09-27 18:17:31,912 autoreload 7372 2228 C:\Users\Ilia\news-reports\summaries\news\views.py changed, reloading.
+INFO 2025-09-27 18:17:32,523 autoreload 12120 14248 Watching for file changes with StatReloader
+ERROR 2025-09-27 18:17:34,426 basehttp 12120 11084 "GET / HTTP/1.1" 500 98109
+WARNING 2025-09-27 18:17:35,221 basehttp 12120 11084 "GET /favicon.ico HTTP/1.1" 404 6151
+INFO 2025-09-27 18:18:31,254 autoreload 12120 14248 C:\Users\Ilia\news-reports\summaries\news\views.py changed, reloading.
+INFO 2025-09-27 18:18:31,898 autoreload 11964 6984 Watching for file changes with StatReloader
+INFO 2025-09-27 18:18:35,799 basehttp 11964 13804 "GET / HTTP/1.1" 200 499128
+INFO 2025-09-27 19:42:55,950 autoreload 1092 1844 Watching for file changes with StatReloader
+INFO 2025-09-27 19:42:59,985 basehttp 1092 5916 "GET / HTTP/1.1" 200 499128
+WARNING 2025-09-27 19:43:00,950 basehttp 1092 5916 "GET /favicon.ico HTTP/1.1" 404 6151
+INFO 2025-09-27 19:48:18,589 basehttp 1092 11348 "GET / HTTP/1.1" 200 499194
+INFO 2025-09-27 19:49:00,498 basehttp 1092 11348 "GET / HTTP/1.1" 200 499194
+INFO 2025-09-27 19:53:21,690 basehttp 1092 11348 "GET / HTTP/1.1" 200 491994
+INFO 2025-09-27 19:56:17,936 basehttp 1092 13256 "GET / HTTP/1.1" 200 476048
+INFO 2025-09-27 19:56:40,884 basehttp 1092 13256 "GET / HTTP/1.1" 200 491994
+INFO 2025-09-27 20:44:43,719 autoreload 9180 12320 Watching for file changes with StatReloader
+INFO 2025-09-27 20:44:45,182 basehttp 9180 13300 "GET / HTTP/1.1" 200 492004
+WARNING 2025-09-27 20:44:47,175 basehttp 9180 13300 "GET /favicon.ico HTTP/1.1" 404 6151
+INFO 2025-09-27 20:45:03,033 basehttp 9180 13300 "GET / HTTP/1.1" 200 492004
+INFO 2025-09-27 20:45:34,235 basehttp 9180 13480 "GET / HTTP/1.1" 200 491994
+INFO 2025-09-27 20:48:58,264 basehttp 9180 13480 "GET / HTTP/1.1" 200 477826
+INFO 2025-09-27 20:52:16,733 basehttp 9180 13480 "GET / HTTP/1.1" 200 484216
+INFO 2025-09-27 20:52:48,553 basehttp 9180 13480 "GET / HTTP/1.1" 200 482056
+INFO 2025-09-27 20:57:05,488 basehttp 9180 13480 "GET / HTTP/1.1" 200 492416
+WARNING 2025-09-27 20:58:00,001 basehttp 9180 13480 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6262
+WARNING 2025-09-27 20:58:08,365 basehttp 9180 13480 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6262
+INFO 2025-09-27 21:01:13,913 basehttp 9180 13480 "GET / HTTP/1.1" 200 492416
+INFO 2025-09-27 21:02:54,004 basehttp 9180 13480 "GET / HTTP/1.1" 200 492416
+INFO 2025-09-27 21:05:25,581 basehttp 9180 13480 "GET / HTTP/1.1" 200 492416
+INFO 2025-09-27 21:18:39,474 autoreload 9180 12320 C:\Users\Ilia\news-reports\summaries\news\views.py changed, reloading.
+INFO 2025-09-27 21:18:40,319 autoreload 11064 6116 Watching for file changes with StatReloader
+INFO 2025-09-28 08:27:57,974 autoreload 16100 14736 Watching for file changes with StatReloader
+WARNING 2025-09-28 08:28:17,000 basehttp 16100 17348 "GET / HTTP/1.1" 404 6122
+WARNING 2025-09-28 08:28:17,982 basehttp 16100 6512 "GET /favicon.ico HTTP/1.1" 404 6173
+INFO 2025-09-28 08:29:39,802 autoreload 16100 14736 C:\Users\Ilia\news-reports\summaries\news\urls.py changed, reloading.
+INFO 2025-09-28 08:29:40,398 autoreload 3220 6020 Watching for file changes with StatReloader
+WARNING 2025-09-28 08:29:46,661 basehttp 3220 1972 "GET / HTTP/1.1" 404 6122
+INFO 2025-09-28 08:29:50,156 basehttp 3220 1972 "GET /1 HTTP/1.1" 301 0
+ERROR 2025-09-28 08:29:50,192 basehttp 3220 14460 "GET /1/ HTTP/1.1" 500 74317
+WARNING 2025-09-28 08:29:55,234 basehttp 3220 14460 "GET / HTTP/1.1" 404 6122
+INFO 2025-09-28 08:33:04,805 autoreload 3220 6020 C:\Users\Ilia\news-reports\summaries\news\urls.py changed, reloading.
+INFO 2025-09-28 08:33:05,401 autoreload 18372 11664 Watching for file changes with StatReloader
+ERROR 2025-09-28 08:50:35,556 basehttp 18372 15248 "GET / HTTP/1.1" 500 79264
+INFO 2025-09-28 09:11:27,201 autoreload 18372 11664 C:\Users\Ilia\news-reports\summaries\news\views.py changed, reloading.
+INFO 2025-09-28 09:11:28,062 autoreload 20152 13552 Watching for file changes with StatReloader
+INFO 2025-09-28 09:11:30,134 basehttp 20152 18168 "GET / HTTP/1.1" 200 40059
+INFO 2025-09-28 09:11:37,113 basehttp 20152 18168 "GET /1/ HTTP/1.1" 200 40059
+INFO 2025-09-28 09:11:41,673 basehttp 20152 18168 "GET /2/ HTTP/1.1" 200 40093
+INFO 2025-09-28 09:11:47,150 basehttp 20152 18168 "GET /3/ HTTP/1.1" 200 39988
+INFO 2025-09-28 09:11:53,191 basehttp 20152 18168 "GET /1/ HTTP/1.1" 200 40059
+INFO 2025-09-28 09:12:09,063 basehttp 20152 18168 "GET /2/ HTTP/1.1" 200 40093
+INFO 2025-09-28 09:18:13,799 autoreload 20152 13552 C:\Users\Ilia\news-reports\summaries\news\views.py changed, reloading.
+INFO 2025-09-28 09:18:14,399 autoreload 6136 20164 Watching for file changes with StatReloader
+INFO 2025-09-28 09:18:20,086 basehttp 6136 10736 "GET /2/ HTTP/1.1" 200 44073
+INFO 2025-09-28 09:18:29,682 basehttp 6136 10736 "GET /today-news HTTP/1.1" 200 7867
+INFO 2025-09-28 09:18:31,770 basehttp 6136 10736 "GET /popular-news HTTP/1.1" 200 7853
+INFO 2025-09-28 09:18:32,900 basehttp 6136 10736 "GET /yestarday-news HTTP/1.1" 200 7867
+INFO 2025-09-28 09:18:35,723 basehttp 6136 10736 "GET /popular-news HTTP/1.1" 200 7853
+INFO 2025-09-28 09:18:36,907 basehttp 6136 10736 "GET /today-news HTTP/1.1" 200 7867
+INFO 2025-09-28 09:18:37,614 basehttp 6136 10736 "GET /popular-news HTTP/1.1" 200 7853
+INFO 2025-09-28 09:18:38,520 basehttp 6136 10736 "GET / HTTP/1.1" 200 44087
+INFO 2025-09-28 09:27:02,650 autoreload 6136 20164 C:\Users\Ilia\news-reports\summaries\news\views.py changed, reloading.
+INFO 2025-09-28 09:27:03,235 autoreload 14020 14944 Watching for file changes with StatReloader
+INFO 2025-09-28 09:27:05,292 basehttp 14020 20132 "GET / HTTP/1.1" 200 60222
+INFO 2025-09-28 09:33:59,016 basehttp 14020 1748 "GET / HTTP/1.1" 200 60222
+ERROR 2025-09-28 10:41:24,979 basehttp 14020 11172 "GET / HTTP/1.1" 500 179940
+INFO 2025-09-28 10:41:40,455 basehttp 14020 11172 "GET / HTTP/1.1" 200 60798
+INFO 2025-09-28 10:43:08,338 basehttp 14020 11172 "GET / HTTP/1.1" 200 60791
+INFO 2025-09-28 10:43:25,633 basehttp 14020 11172 "GET / HTTP/1.1" 200 60792
+INFO 2025-09-28 10:45:25,822 basehttp 14020 11172 "GET / HTTP/1.1" 200 60823
+INFO 2025-09-28 10:46:09,152 basehttp 14020 11172 "GET / HTTP/1.1" 200 60825
+INFO 2025-09-28 10:47:15,802 basehttp 14020 11172 "GET / HTTP/1.1" 200 60860
+INFO 2025-09-28 10:48:40,180 basehttp 14020 11172 "GET / HTTP/1.1" 200 60888
+INFO 2025-09-28 10:49:59,734 basehttp 14020 11172 "GET / HTTP/1.1" 200 60902
+INFO 2025-09-28 10:50:54,288 basehttp 14020 11172 "GET / HTTP/1.1" 200 60897
+INFO 2025-09-28 10:50:55,810 basehttp 14020 11172 "GET / HTTP/1.1" 200 60897
+INFO 2025-09-28 10:51:12,691 basehttp 14020 11172 "GET / HTTP/1.1" 200 60926
+INFO 2025-09-28 10:51:29,119 basehttp 14020 11172 "GET / HTTP/1.1" 200 60927
+INFO 2025-09-28 10:54:44,955 basehttp 14020 11172 "GET /search-news?q=erhgwe HTTP/1.1" 200 8618
+INFO 2025-09-28 11:10:25,208 basehttp 14020 1272 "GET / HTTP/1.1" 200 60400
+INFO 2025-09-28 11:12:18,576 basehttp 14020 1272 "GET / HTTP/1.1" 200 60412
+INFO 2025-09-28 11:14:41,008 basehttp 14020 1272 "GET / HTTP/1.1" 200 60412
+WARNING 2025-09-28 11:14:46,500 basehttp 14020 1272 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6544
+INFO 2025-09-28 11:16:21,220 autoreload 14020 14944 C:\Users\Ilia\news-reports\summaries\news\views.py changed, reloading.
+INFO 2025-09-28 11:16:22,103 autoreload 2660 4652 Watching for file changes with StatReloader
+ERROR 2025-09-28 11:16:25,357 basehttp 2660 20124 "GET / HTTP/1.1" 500 102887
+WARNING 2025-09-28 11:16:25,428 basehttp 2660 20124 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6544
+INFO 2025-09-28 11:17:52,991 autoreload 2660 4652 C:\Users\Ilia\news-reports\summaries\news\views.py changed, reloading.
+INFO 2025-09-28 11:17:53,967 autoreload 5792 16032 Watching for file changes with StatReloader
+INFO 2025-09-28 11:17:54,957 basehttp 5792 18456 "GET / HTTP/1.1" 200 60416
+INFO 2025-09-28 11:18:14,233 basehttp 5792 18456 "GET /1/ HTTP/1.1" 200 60416
+INFO 2025-09-29 07:37:45,921 autoreload 15544 3152 Watching for file changes with StatReloader
+INFO 2025-09-29 07:37:47,148 basehttp 15544 4960 "GET / HTTP/1.1" 200 60416
+WARNING 2025-09-29 07:37:48,010 basehttp 15544 4960 "GET /favicon.ico HTTP/1.1" 404 6433
+INFO 2025-09-29 07:37:52,331 basehttp 15544 4960 "GET / HTTP/1.1" 200 60416
+WARNING 2025-09-29 07:37:58,111 basehttp 15544 4960 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6544
+INFO 2025-09-29 07:39:30,091 basehttp 15544 4960 "GET / HTTP/1.1" 200 60384
+WARNING 2025-09-29 07:39:30,158 basehttp 15544 4960 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6544
+WARNING 2025-09-29 07:53:19,914 basehttp 15544 18128 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6544
+INFO 2025-09-29 07:55:31,059 basehttp 15544 18128 "GET / HTTP/1.1" 200 60294
+WARNING 2025-09-29 07:55:31,131 basehttp 15544 18128 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6544
+INFO 2025-09-29 08:00:13,536 autoreload 15544 3152 C:\Users\Ilia\news-reports\summaries\news\views.py changed, reloading.
+INFO 2025-09-29 08:00:14,156 autoreload 18104 16604 Watching for file changes with StatReloader
+INFO 2025-09-29 08:00:18,439 basehttp 18104 4516 "GET / HTTP/1.1" 200 60236
+WARNING 2025-09-29 08:00:18,486 basehttp 18104 4516 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6544
+INFO 2025-09-29 08:03:51,909 basehttp 18104 4516 "GET / HTTP/1.1" 200 60236
+WARNING 2025-09-29 08:03:51,949 basehttp 18104 4516 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6544
+INFO 2025-09-29 08:06:56,735 autoreload 18104 16604 C:\Users\Ilia\news-reports\summaries\news\views.py changed, reloading.
+INFO 2025-09-29 08:06:57,374 autoreload 17712 344 Watching for file changes with StatReloader
+INFO 2025-09-29 08:07:01,525 basehttp 17712 17220 "GET / HTTP/1.1" 200 61108
+WARNING 2025-09-29 08:07:01,568 basehttp 17712 17220 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6544
+INFO 2025-09-29 08:07:11,448 basehttp 17712 17220 "GET /2/ HTTP/1.1" 200 60913
+INFO 2025-09-29 08:09:14,554 basehttp 17712 17220 "GET /2/ HTTP/1.1" 200 61117
+INFO 2025-09-29 08:09:52,305 basehttp 17712 17220 "GET / HTTP/1.1" 200 61312
+INFO 2025-09-29 08:09:59,031 basehttp 17712 17220 "GET /2/ HTTP/1.1" 200 61117
+INFO 2025-09-29 08:13:10,596 basehttp 17712 17220 "GET /2/ HTTP/1.1" 200 61107
+INFO 2025-09-29 08:13:32,276 basehttp 17712 17220 "GET /2/ HTTP/1.1" 200 61071
+INFO 2025-09-29 08:13:35,096 basehttp 17712 17220 "GET /2/ HTTP/1.1" 200 61071
+INFO 2025-09-29 08:40:57,208 basehttp 17712 7292 "GET /2/ HTTP/1.1" 200 61070
+INFO 2025-09-29 08:41:33,454 basehttp 17712 7292 "GET /2/ HTTP/1.1" 200 61072
+INFO 2025-09-29 08:42:35,891 basehttp 17712 7292 "GET /2/ HTTP/1.1" 200 61075
+INFO 2025-09-29 08:42:40,131 basehttp 17712 7292 "GET /3/ HTTP/1.1" 200 60862
+INFO 2025-09-29 08:46:12,586 basehttp 17712 7292 "GET /3/ HTTP/1.1" 200 61678
+INFO 2025-09-29 08:46:30,037 basehttp 17712 7292 "GET /2/ HTTP/1.1" 200 61891
+INFO 2025-09-29 08:46:37,390 basehttp 17712 7292 "GET /3/ HTTP/1.1" 200 61678
+INFO 2025-09-29 08:46:46,641 basehttp 17712 7292 "GET /3/ HTTP/1.1" 200 61678
+INFO 2025-09-29 08:57:13,148 autoreload 9400 1792 Watching for file changes with StatReloader
+INFO 2025-09-29 08:58:44,762 basehttp 9400 13572 "GET / HTTP/1.1" 200 62076
+WARNING 2025-09-29 08:58:45,819 basehttp 9400 13572 "GET /favicon.ico HTTP/1.1" 404 6433
+INFO 2025-09-29 08:58:56,324 basehttp 9400 16560 "GET / HTTP/1.1" 200 62076
+INFO 2025-09-29 08:58:57,600 basehttp 9400 16560 "GET /2/ HTTP/1.1" 200 61881
+INFO 2025-09-29 08:59:58,302 basehttp 9400 16560 "GET /2/ HTTP/1.1" 200 61864
+INFO 2025-09-29 09:08:38,799 basehttp 9400 9768 "GET /2/ HTTP/1.1" 200 74515
+INFO 2025-09-29 09:20:54,331 basehttp 9400 7936 "GET /2/ HTTP/1.1" 200 74427
+INFO 2025-09-29 09:23:07,632 basehttp 9400 7936 "GET /2/ HTTP/1.1" 200 74427
+INFO 2025-09-29 09:23:29,484 basehttp 9400 7936 "GET /2/ HTTP/1.1" 200 74427
+WARNING 2025-09-29 09:23:37,415 basehttp 9400 7936 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6544
+INFO 2025-09-29 09:24:06,212 autoreload 7060 9392 Watching for file changes with StatReloader
+INFO 2025-09-29 09:24:08,955 basehttp 7060 908 "GET / HTTP/1.1" 200 74703
+INFO 2025-09-29 09:24:18,417 basehttp 7060 908 "GET /2/ HTTP/1.1" 200 74427
+WARNING 2025-09-29 09:24:40,640 basehttp 7060 908 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6544
+INFO 2025-09-29 09:26:39,014 basehttp 7060 908 "GET /2/ HTTP/1.1" 200 73668
+WARNING 2025-09-29 09:26:39,073 basehttp 7060 908 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6544
+INFO 2025-09-29 09:27:02,338 basehttp 7060 908 "GET / HTTP/1.1" 200 73884
+INFO 2025-09-29 09:27:05,678 basehttp 7060 908 "GET /1 HTTP/1.1" 301 0
+INFO 2025-09-29 09:27:05,692 basehttp 7060 16308 "GET /1/ HTTP/1.1" 200 73884
+INFO 2025-09-29 09:27:58,752 basehttp 7060 16308 "GET /1/ HTTP/1.1" 200 73867
+INFO 2025-09-29 09:28:08,745 basehttp 7060 16308 "GET /2/ HTTP/1.1" 200 73632
+INFO 2025-09-29 09:30:36,732 basehttp 7060 16308 "GET /2/ HTTP/1.1" 200 74890
+INFO 2025-09-29 09:30:48,783 basehttp 7060 16308 "GET /4/ HTTP/1.1" 200 74035
+INFO 2025-09-29 09:37:56,982 basehttp 7060 1352 "GET /4/ HTTP/1.1" 200 75771
+INFO 2025-09-29 09:38:08,366 basehttp 7060 1352 "GET / HTTP/1.1" 200 75147
+INFO 2025-09-29 09:39:17,289 basehttp 7060 1352 "GET / HTTP/1.1" 200 75145
+INFO 2025-09-29 09:39:20,795 basehttp 7060 1352 "GET /1/ HTTP/1.1" 200 75145
+INFO 2025-09-29 10:00:10,947 autoreload 18328 18280 Watching for file changes with StatReloader
+INFO 2025-09-29 10:00:12,396 basehttp 18328 13916 "GET / HTTP/1.1" 200 75176
+WARNING 2025-09-29 10:00:13,296 basehttp 18328 13916 "GET /favicon.ico HTTP/1.1" 404 6433
+INFO 2025-09-29 10:00:20,124 basehttp 18328 10828 "GET /2/ HTTP/1.1" 200 76655
+INFO 2025-09-29 10:00:27,571 basehttp 18328 10828 "GET /8/ HTTP/1.1" 200 77098
+INFO 2025-09-29 10:00:37,613 basehttp 18328 10828 "GET / HTTP/1.1" 200 75176
+INFO 2025-09-29 10:01:06,484 autoreload 18328 18280 C:\Users\Ilia\news-reports\summaries\news\views.py changed, reloading.
+INFO 2025-09-29 10:01:07,351 autoreload 17748 15928 Watching for file changes with StatReloader
+INFO 2025-09-29 10:01:07,605 basehttp 17748 2892 "GET / HTTP/1.1" 200 75234
+INFO 2025-09-29 10:01:50,401 basehttp 17748 2892 "GET /signin HTTP/1.1" 200 8686
+ERROR 2025-09-29 10:12:10,506 basehttp 17748 19296 "GET /signin HTTP/1.1" 500 134752
+ERROR 2025-09-29 10:12:12,473 basehttp 17748 19296 "GET /signin HTTP/1.1" 500 134889
+INFO 2025-09-29 10:12:59,336 basehttp 17748 19296 "GET /signin HTTP/1.1" 200 4757
+INFO 2025-09-29 10:13:30,438 basehttp 17748 19296 "GET /signin HTTP/1.1" 200 4757
+INFO 2025-09-29 10:14:47,541 basehttp 17748 19296 "GET /signin HTTP/1.1" 200 4763
+INFO 2025-09-29 10:14:50,157 basehttp 17748 19296 "GET /signin HTTP/1.1" 200 4763
+ERROR 2025-09-29 10:14:51,422 basehttp 17748 19296 "GET /login HTTP/1.1" 500 133467
+INFO 2025-09-29 10:16:09,837 basehttp 17748 19296 "GET /login HTTP/1.1" 200 9338
+INFO 2025-09-29 10:16:21,744 basehttp 17748 19296 "GET / HTTP/1.1" 200 75234
+INFO 2025-09-29 10:16:25,242 basehttp 17748 19296 "GET /signin HTTP/1.1" 200 4763
+INFO 2025-09-29 10:16:27,000 basehttp 17748 19296 "GET /login HTTP/1.1" 200 9338
+INFO 2025-09-29 10:16:39,795 basehttp 17748 19296 "GET / HTTP/1.1" 200 75234
+INFO 2025-09-29 10:16:59,251 basehttp 17748 19296 "GET /popular-news HTTP/1.1" 200 8694
+INFO 2025-09-29 10:17:01,104 basehttp 17748 19296 "GET /today-news HTTP/1.1" 200 8708
+INFO 2025-09-29 10:17:05,143 basehttp 17748 19296 "GET /yestarday-news HTTP/1.1" 200 8708
+INFO 2025-09-29 10:17:07,320 basehttp 17748 19296 "GET /sports-news HTTP/1.1" 200 8689
+INFO 2025-09-29 10:17:08,790 basehttp 17748 19296 "GET /political-news HTTP/1.1" 200 8698
+ERROR 2025-09-29 10:17:10,125 basehttp 17748 19296 "GET /finans-news HTTP/1.1" 500 214720
+INFO 2025-09-29 10:57:15,612 autoreload 7052 10568 Watching for file changes with StatReloader
+ERROR 2025-09-29 10:57:18,414 basehttp 7052 6832 "GET / HTTP/1.1" 500 87929
+WARNING 2025-09-29 10:57:19,085 basehttp 7052 6832 "GET /favicon.ico HTTP/1.1" 404 6631
+INFO 2025-09-29 10:58:33,751 autoreload 7052 10568 C:\Users\Ilia\news-reports\summaries\news\utilits.py changed, reloading.
+INFO 2025-09-29 10:58:34,410 autoreload 8280 11296 Watching for file changes with StatReloader
+ERROR 2025-09-29 10:58:35,415 basehttp 8280 16228 "GET / HTTP/1.1" 500 207444
+INFO 2025-09-29 11:01:14,530 autoreload 8280 11296 C:\Users\Ilia\news-reports\summaries\news\urls.py changed, reloading.
+INFO 2025-09-29 11:01:15,192 autoreload 9748 4224 Watching for file changes with StatReloader
+ERROR 2025-09-29 11:01:16,034 basehttp 9748 15540 "GET / HTTP/1.1" 500 208974
+INFO 2025-09-29 11:01:36,340 autoreload 9748 4224 C:\Users\Ilia\news-reports\summaries\news\urls.py changed, reloading.
+INFO 2025-09-29 11:01:37,024 autoreload 4528 4380 Watching for file changes with StatReloader
+INFO 2025-09-29 11:01:37,448 basehttp 4528 6400 "GET / HTTP/1.1" 200 75235
+INFO 2025-09-29 11:04:10,942 autoreload 4528 4380 C:\Users\Ilia\news-reports\summaries\news\views.py changed, reloading.
+INFO 2025-09-29 11:04:11,714 autoreload 3728 6744 Watching for file changes with StatReloader
+ERROR 2025-09-29 11:04:18,653 basehttp 3728 15308 "GET /finans-news/ HTTP/1.1" 500 226628
+INFO 2025-09-29 11:05:24,907 basehttp 3728 15308 "GET /finans-news/ HTTP/1.1" 200 8755
+INFO 2025-09-29 11:06:21,792 basehttp 3728 15308 "GET /finans-news/ HTTP/1.1" 200 8755
+INFO 2025-09-29 11:06:23,561 basehttp 3728 15308 "GET /finans-news/ HTTP/1.1" 200 8755
+INFO 2025-09-29 11:06:48,172 basehttp 3728 15308 "GET /finans-news/ HTTP/1.1" 200 20969
+INFO 2025-09-29 11:36:43,355 autoreload 3728 6744 C:\Users\Ilia\news-reports\summaries\news\views.py changed, reloading.
+INFO 2025-09-29 11:36:44,032 autoreload 15272 3812 Watching for file changes with StatReloader
+INFO 2025-09-29 11:39:31,249 autoreload 15272 3812 C:\Users\Ilia\news-reports\summaries\news\utilits.py changed, reloading.
+INFO 2025-09-29 11:39:31,876 autoreload 13004 12852 Watching for file changes with StatReloader
+INFO 2025-09-29 11:39:35,604 basehttp 13004 17148 "GET /finans-news/ HTTP/1.1" 200 20969
+INFO 2025-09-29 11:40:01,845 basehttp 13004 17148 "GET /finans-news/ HTTP/1.1" 200 20969
+INFO 2025-09-29 11:40:04,178 basehttp 13004 17148 "GET /today-news HTTP/1.1" 200 20793
+INFO 2025-09-29 11:40:15,932 basehttp 13004 17148 "GET /yestarday-news HTTP/1.1" 200 24934
+INFO 2025-09-29 11:41:00,751 basehttp 13004 17148 "GET /yestarday-news HTTP/1.1" 200 24927
+INFO 2025-09-29 11:41:02,972 basehttp 13004 17148 "GET /today-news HTTP/1.1" 200 20786
+INFO 2025-09-29 11:41:04,016 basehttp 13004 17148 "GET /popular-news HTTP/1.1" 200 73395
+INFO 2025-09-29 11:41:05,507 basehttp 13004 17148 "GET /yestarday-news HTTP/1.1" 200 24927
+INFO 2025-09-29 11:41:07,238 basehttp 13004 17148 "GET /today-news HTTP/1.1" 200 20786
+INFO 2025-09-29 11:41:56,191 basehttp 13004 17148 "GET /political-news HTTP/1.1" 200 24896
+INFO 2025-09-29 11:42:03,230 basehttp 13004 17148 "GET /finans-news/ HTTP/1.1" 200 20962
+ERROR 2025-09-29 11:42:05,353 basehttp 13004 17148 "GET /technological-news HTTP/1.1" 500 100523
+INFO 2025-09-29 11:44:44,403 autoreload 13004 12852 C:\Users\Ilia\news-reports\summaries\news\views.py changed, reloading.
+INFO 2025-09-29 11:44:45,116 autoreload 12584 17212 Watching for file changes with StatReloader
+ERROR 2025-09-29 11:46:00,066 basehttp 12584 8496 "GET /technological-news HTTP/1.1" 500 100601
+INFO 2025-09-29 11:46:07,451 basehttp 12584 8496 "GET / HTTP/1.1" 200 75189
+INFO 2025-09-29 11:46:09,155 basehttp 12584 8496 "GET /yestarday-news HTTP/1.1" 200 26678
+INFO 2025-09-29 11:46:30,771 basehttp 12584 8496 "GET /2/ HTTP/1.1" 200 77075
+INFO 2025-09-29 11:46:33,349 basehttp 12584 8496 "GET /3/ HTTP/1.1" 200 76360
+INFO 2025-09-29 11:46:34,522 basehttp 12584 8496 "GET /4/ HTTP/1.1" 200 75910
+INFO 2025-09-29 11:46:35,179 basehttp 12584 8496 "GET /5/ HTTP/1.1" 200 76595
+INFO 2025-09-29 11:46:39,559 basehttp 12584 8496 "GET /sports-news HTTP/1.1" 200 30594
+INFO 2025-09-29 11:46:42,777 basehttp 12584 8496 "GET /finans-news/ HTTP/1.1" 200 22845
+INFO 2025-09-29 11:46:51,411 basehttp 12584 8496 "GET /popular-news HTTP/1.1" 200 75014
+INFO 2025-09-29 11:46:57,011 basehttp 12584 8496 "GET /today-news HTTP/1.1" 200 22537
+INFO 2025-09-29 11:46:57,925 basehttp 12584 8496 "GET /yestarday-news HTTP/1.1" 200 26678
+INFO 2025-09-29 11:47:00,985 basehttp 12584 8496 "GET /sports-news HTTP/1.1" 200 30594
+INFO 2025-09-29 11:48:37,506 autoreload 12584 17212 C:\Users\Ilia\news-reports\summaries\news\views.py changed, reloading.
+INFO 2025-09-29 11:48:38,143 autoreload 17124 15960 Watching for file changes with StatReloader
+INFO 2025-09-29 11:48:39,203 basehttp 17124 17664 "GET /sports-news HTTP/1.1" 200 30594
+INFO 2025-09-29 11:48:43,770 basehttp 17124 17664 "GET /political-news HTTP/1.1" 200 26515
+INFO 2025-09-29 11:49:11,266 basehttp 17124 17664 "GET /sports-news HTTP/1.1" 200 30594
+INFO 2025-09-29 11:49:14,208 basehttp 17124 17664 "GET /2/ HTTP/1.1" 200 77075
+INFO 2025-09-29 11:49:17,802 basehttp 17124 17664 "GET /3/ HTTP/1.1" 200 76360
+INFO 2025-09-29 11:51:53,186 autoreload 17124 15960 C:\Users\Ilia\news-reports\summaries\news\views.py changed, reloading.
+INFO 2025-09-29 11:51:53,855 autoreload 4068 17420 Watching for file changes with StatReloader
+INFO 2025-09-29 11:51:55,786 basehttp 4068 17140 "GET /finans-news/ HTTP/1.1" 200 26532
+INFO 2025-09-29 11:51:58,544 basehttp 4068 17140 "GET /finans-news/ HTTP/1.1" 200 26532
+INFO 2025-09-29 11:52:05,193 basehttp 4068 17140 "GET /10/ HTTP/1.1" 200 76741
+INFO 2025-09-29 11:52:14,050 basehttp 4068 17140 "GET /11/ HTTP/1.1" 200 31870
+INFO 2025-09-29 11:52:16,679 basehttp 4068 17140 "GET /8/ HTTP/1.1" 200 76903
+INFO 2025-09-29 11:52:19,637 basehttp 4068 17140 "GET /7/ HTTP/1.1" 200 77034
+INFO 2025-09-29 11:52:30,704 basehttp 4068 17140 "GET /6/ HTTP/1.1" 200 76812
+INFO 2025-09-29 11:52:34,619 basehttp 4068 17140 "GET /5/ HTTP/1.1" 200 76595
+INFO 2025-09-29 11:52:35,222 basehttp 4068 17140 "GET /4/ HTTP/1.1" 200 75910
+INFO 2025-09-29 11:52:39,321 basehttp 4068 17140 "GET / HTTP/1.1" 200 75189
+INFO 2025-09-29 11:52:50,080 basehttp 4068 17140 "GET /sports-news HTTP/1.1" 200 30594
+INFO 2025-09-29 11:52:53,773 basehttp 4068 17140 "GET /1/ HTTP/1.1" 200 75189
+INFO 2025-09-29 11:52:59,718 basehttp 4068 17140 "GET /sports-news HTTP/1.1" 200 30594
+INFO 2025-09-29 11:57:39,439 autoreload 4068 17420 C:\Users\Ilia\news-reports\summaries\news\views.py changed, reloading.
+INFO 2025-09-29 11:57:40,092 autoreload 13308 14500 Watching for file changes with StatReloader
+INFO 2025-09-29 11:57:40,846 basehttp 13308 14920 "GET /sports-news HTTP/1.1" 200 30594
+INFO 2025-09-29 11:57:46,567 basehttp 13308 14920 "GET /sports-news HTTP/1.1" 200 30594
+INFO 2025-09-29 11:57:48,391 basehttp 13308 14920 "GET /2/ HTTP/1.1" 200 77075
+INFO 2025-09-29 11:57:53,381 basehttp 13308 14920 "GET /finans-news/ HTTP/1.1" 200 26532
+INFO 2025-09-29 11:57:55,626 basehttp 13308 14920 "GET /2/ HTTP/1.1" 200 77075
+INFO 2025-09-29 11:57:59,423 basehttp 13308 14920 "GET /3/ HTTP/1.1" 200 76360
+INFO 2025-09-29 11:58:29,852 autoreload 4512 16884 Watching for file changes with StatReloader
+INFO 2025-09-29 11:58:37,528 basehttp 4512 16856 "GET / HTTP/1.1" 200 75189
+INFO 2025-09-29 11:58:48,226 basehttp 4512 16856 "GET /today-news HTTP/1.1" 200 22537
+INFO 2025-09-29 12:00:26,290 basehttp 4512 16856 "GET / HTTP/1.1" 200 75189
+INFO 2025-09-29 12:00:29,541 basehttp 4512 16856 "GET /sports-news HTTP/1.1" 200 30594
+INFO 2025-09-29 12:00:33,717 basehttp 4512 16856 "GET /finans-news/ HTTP/1.1" 200 26532
+ERROR 2025-09-29 12:00:36,116 basehttp 4512 16856 "GET /technological-news HTTP/1.1" 500 100459
+INFO 2025-09-29 12:00:42,509 basehttp 4512 16856 "GET /political-news HTTP/1.1" 200 8699
+INFO 2025-09-29 12:03:32,359 autoreload 4512 16884 C:\Users\Ilia\news-reports\summaries\news\views.py changed, reloading.
+INFO 2025-09-29 12:03:33,096 autoreload 10252 10696 Watching for file changes with StatReloader
+INFO 2025-09-29 12:09:43,155 autoreload 10252 10696 C:\Users\Ilia\news-reports\summaries\news\views.py changed, reloading.
+INFO 2025-09-29 12:09:43,785 autoreload 8632 17268 Watching for file changes with StatReloader
+INFO 2025-09-29 12:09:45,994 basehttp 8632 9772 "GET /political-news HTTP/1.1" 200 8699
+INFO 2025-09-29 12:09:47,396 basehttp 8632 9772 "GET /yestarday-news HTTP/1.1" 200 70127
+INFO 2025-09-29 12:09:51,493 basehttp 8632 9772 "GET /2/ HTTP/1.1" 200 73009
+INFO 2025-09-29 12:11:08,685 basehttp 8632 9772 "GET /sports-news HTTP/1.1" 200 70348
+INFO 2025-09-29 12:11:12,857 basehttp 8632 9772 "GET /2/ HTTP/1.1" 200 73009
+INFO 2025-09-29 12:37:06,854 autoreload 6616 7108 Watching for file changes with StatReloader
+INFO 2025-09-29 12:37:09,624 basehttp 6616 12948 "GET / HTTP/1.1" 200 72390
+WARNING 2025-09-29 12:37:10,868 basehttp 6616 12948 "GET /favicon.ico HTTP/1.1" 404 8772
+INFO 2025-09-29 12:40:06,317 basehttp 6616 11732 "GET / HTTP/1.1" 200 71122
+INFO 2025-09-29 12:40:12,399 basehttp 6616 11732 "GET /2/ HTTP/1.1" 200 72989
+INFO 2025-09-29 12:40:16,955 basehttp 6616 11732 "GET /4/ HTTP/1.1" 200 72413
+INFO 2025-09-29 12:45:18,528 autoreload 6616 7108 C:\Users\Ilia\news-reports\summaries\news\views.py changed, reloading.
+INFO 2025-09-29 12:45:19,387 autoreload 6688 15472 Watching for file changes with StatReloader
+INFO 2025-09-29 12:45:23,785 basehttp 6688 4128 "GET /popular-news HTTP/1.1" 200 10503
+INFO 2025-09-29 12:45:28,915 basehttp 6688 4128 "GET /popular-news HTTP/1.1" 200 10503
+INFO 2025-09-29 12:45:30,951 basehttp 6688 4128 "GET /today-news HTTP/1.1" 200 70091
+INFO 2025-09-29 12:45:31,872 basehttp 6688 4128 "GET /popular-news HTTP/1.1" 200 10503
+INFO 2025-09-29 12:45:36,666 basehttp 6688 4128 "GET /finans-news/ HTTP/1.1" 200 70339
+WARNING 2025-09-29 12:45:42,925 basehttp 6688 4128 "GET /finans-news/finans-news//2/ HTTP/1.1" 404 8820
+INFO 2025-09-29 12:45:57,398 basehttp 6688 4128 "GET /today-news HTTP/1.1" 200 70091
+WARNING 2025-09-29 12:46:17,736 basehttp 6688 4128 "GET /finans-news/finans-news//3/ HTTP/1.1" 404 8820
+INFO 2025-09-29 12:46:22,479 basehttp 6688 4128 "GET /today-news HTTP/1.1" 200 70091
+INFO 2025-09-29 12:47:30,110 basehttp 6688 4128 "GET /finans-news/ HTTP/1.1" 200 70339
+WARNING 2025-09-29 12:47:46,905 basehttp 6688 4128 "GET /finans-news/finans-news//2/ HTTP/1.1" 404 8820
+WARNING 2025-09-29 12:48:21,548 basehttp 6688 4128 "GET /finans-news/finans-news//2/ HTTP/1.1" 404 8820
+WARNING 2025-09-29 12:48:25,572 basehttp 6688 4128 "GET /finans-news/finans-news//2/ HTTP/1.1" 404 8820
+WARNING 2025-09-29 12:48:36,428 basehttp 6688 4128 "GET /finans-news/finans-news//3/ HTTP/1.1" 404 8820
+WARNING 2025-09-29 12:49:11,295 basehttp 6688 4128 "GET /finans-news/finans-news//3/ HTTP/1.1" 404 8820
+INFO 2025-09-29 12:49:17,994 basehttp 6688 4128 "GET /finans-news/ HTTP/1.1" 200 70291
+INFO 2025-09-29 12:49:22,354 basehttp 6688 4128 "GET /2/ HTTP/1.1" 200 72989
+INFO 2025-09-29 12:50:13,472 basehttp 6688 4128 "GET /finans-news/ HTTP/1.1" 200 70291
+INFO 2025-09-29 12:52:29,535 autoreload 6688 15472 C:\Users\Ilia\news-reports\summaries\news\views.py changed, reloading.
+INFO 2025-09-29 12:52:30,437 autoreload 18072 9156 Watching for file changes with StatReloader
+INFO 2025-09-29 12:52:35,449 basehttp 18072 17988 "GET /yestarday-news HTTP/1.1" 200 70117
+INFO 2025-09-29 12:52:39,101 basehttp 18072 17988 "GET /finans-news/ HTTP/1.1" 200 70343
+WARNING 2025-09-29 12:52:42,419 basehttp 18072 17988 "GET /finans-news//2/ HTTP/1.1" 404 8784
+INFO 2025-09-29 12:57:08,554 autoreload 18072 9156 C:\Users\Ilia\news-reports\summaries\news\utilits.py changed, reloading.
+INFO 2025-09-29 12:57:09,314 autoreload 10456 3316 Watching for file changes with StatReloader
+INFO 2025-09-29 13:03:19,443 autoreload 10456 3316 C:\Users\Ilia\news-reports\summaries\news\urls.py changed, reloading.
+INFO 2025-09-29 13:03:20,322 autoreload 3356 16848 Watching for file changes with StatReloader
+WARNING 2025-09-29 13:03:22,613 basehttp 3356 5060 "GET /finans-news//2/ HTTP/1.1" 404 8832
+INFO 2025-09-29 13:03:26,108 basehttp 3356 5060 "GET /yestarday-news HTTP/1.1" 200 70159
+INFO 2025-09-29 13:03:30,460 basehttp 3356 5060 "GET /today-news HTTP/1.1" 200 70117
+INFO 2025-09-29 13:03:34,365 basehttp 3356 5060 "GET /popular-news HTTP/1.1" 200 10479
+INFO 2025-09-29 13:03:37,575 basehttp 3356 5060 "GET /today-news HTTP/1.1" 200 70117
+INFO 2025-09-29 13:03:38,963 basehttp 3356 5060 "GET /popular-news HTTP/1.1" 200 10479
+INFO 2025-09-29 13:03:43,300 basehttp 3356 5060 "GET /popular-news/2 HTTP/1.1" 200 12420
+INFO 2025-09-29 13:03:46,212 basehttp 3356 5060 "GET /popular-news/2 HTTP/1.1" 200 12420
+INFO 2025-09-29 13:03:47,077 basehttp 3356 5060 "GET /popular-news/3 HTTP/1.1" 200 12424
+INFO 2025-09-29 13:03:47,798 basehttp 3356 5060 "GET /popular-news/5 HTTP/1.1" 200 12424
+INFO 2025-09-29 13:03:48,489 basehttp 3356 5060 "GET /popular-news/6 HTTP/1.1" 200 12424
+INFO 2025-09-29 13:03:49,080 basehttp 3356 5060 "GET /popular-news/7 HTTP/1.1" 200 12424
+INFO 2025-09-29 13:03:49,678 basehttp 3356 5060 "GET /popular-news/10 HTTP/1.1" 200 12426
+INFO 2025-09-29 13:03:52,174 basehttp 3356 5060 "GET /yestarday-news HTTP/1.1" 200 70159
+INFO 2025-09-29 13:03:55,119 basehttp 3356 5060 "GET /yestarday-news/2 HTTP/1.1" 200 71032
+INFO 2025-09-29 13:03:58,674 basehttp 3356 5060 "GET /yestarday-news/3 HTTP/1.1" 200 70143
+INFO 2025-09-29 13:04:02,272 basehttp 3356 5060 "GET /sports-news HTTP/1.1" 200 70382
+INFO 2025-09-29 13:04:06,797 basehttp 3356 5060 "GET /sports-news/2 HTTP/1.1" 200 70859
+INFO 2025-09-29 13:04:10,344 basehttp 3356 5060 "GET /sports-news/3 HTTP/1.1" 200 71032
+INFO 2025-09-29 13:04:15,633 basehttp 3356 5060 "GET /popular-news HTTP/1.1" 200 10479
+INFO 2025-09-29 13:05:34,853 basehttp 3356 5060 "GET /popular-news HTTP/1.1" 200 71149
+INFO 2025-09-29 13:05:37,432 basehttp 3356 5060 "GET /today-news HTTP/1.1" 200 70117
+INFO 2025-09-29 13:05:38,487 basehttp 3356 5060 "GET /yestarday-news HTTP/1.1" 200 70159
+INFO 2025-09-29 13:05:43,256 basehttp 3356 5060 "GET /today-news HTTP/1.1" 200 70117
+INFO 2025-09-29 13:05:45,354 basehttp 3356 5060 "GET /popular-news HTTP/1.1" 200 71149
+INFO 2025-09-29 13:05:47,825 basehttp 3356 5060 "GET /political-news HTTP/1.1" 200 9307
+INFO 2025-09-29 13:06:02,509 basehttp 3356 5060 "GET /political-news HTTP/1.1" 200 70020
+INFO 2025-09-29 13:06:04,868 basehttp 3356 5060 "GET /technological-news HTTP/1.1" 200 8969
+INFO 2025-09-29 13:07:09,387 basehttp 3356 5060 "GET /technological-news HTTP/1.1" 200 8969
+INFO 2025-09-29 13:07:15,945 basehttp 3356 5060 "GET /finans-news/ HTTP/1.1" 200 70324
+INFO 2025-09-29 13:07:21,160 basehttp 3356 5060 "GET /political-news HTTP/1.1" 200 70020
+INFO 2025-09-29 13:07:23,041 basehttp 3356 5060 "GET /sports-news HTTP/1.1" 200 70382
+INFO 2025-09-29 13:07:25,225 basehttp 3356 5060 "GET /finans-news/ HTTP/1.1" 200 70324
+INFO 2025-09-29 13:07:27,005 basehttp 3356 5060 "GET /popular-news HTTP/1.1" 200 71149
+INFO 2025-09-29 13:07:29,833 basehttp 3356 5060 "GET /today-news HTTP/1.1" 200 70117
+INFO 2025-09-29 13:07:30,724 basehttp 3356 5060 "GET /yestarday-news HTTP/1.1" 200 70159
+INFO 2025-09-29 13:07:34,652 basehttp 3356 5060 "GET /today-news HTTP/1.1" 200 70117
+INFO 2025-09-29 13:07:35,481 basehttp 3356 5060 "GET /popular-news HTTP/1.1" 200 71149
+INFO 2025-09-29 13:07:36,857 basehttp 3356 5060 "GET /yestarday-news HTTP/1.1" 200 70159

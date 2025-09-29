@@ -1,6 +1,9 @@
+import logging
 from django.apps import AppConfig
 from apscheduler.schedulers.background import BackgroundScheduler
-from news.managment.commands.update_daily_news import Command
+from django.core.management import call_command
+
+logger = logging.getLogger(__name__)
 
 class NewsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
@@ -14,15 +17,14 @@ class NewsConfig(AppConfig):
         sheduler.add_job(
             self.run_news_saver,
             'cron',
-            hour='9,18',
+            hour='9,14,20',
             minute=0,
             id='news_parser_job')
         sheduler.start()
-        print('Планировщик новостей запущен')
+        logger.debug('Планировщик новостей запущен')
 
-    async def run_news_saver():
+    def run_news_saver(self, job=None):
         try:
-            command = Command()
-            await command.handle()
+            call_command('update_daily_news')
         except Exception as e: 
-            print(e)
+            logger.debug(f"Во время парсинга и сохранения новостей возникла ошибка: {e}")

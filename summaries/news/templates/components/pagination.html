@@ -1,0 +1,16 @@
+<div class="pagination">    
+    {% if pagination_urls.previous %}
+         <button class="btn-pagination pagination-left-button" onclick="window.location.href='{{current_path}}{{ pagination_urls.previous.url }}'"> ← </button>
+    {% endif %}
+    {% for page in pagination_urls.page_range %}
+        {% if page.current %}
+            <button class="btn-pagination btn-page-number current" onclick="window.location.href='{{current_path}}{{ page.number }}'">{{ page.number }}</button>
+        {% else %}
+            <button class="btn-pagination btn-page-number" onclick="window.location.href='{{current_path}}{{ page.url }}'">{{ page.number }}</button>
+        {% endif %}
+    {% endfor %}
+    
+    {% if pagination_urls.next %}
+        <button class="btn-pagination pagination-right-button" onclick="window.location.href='{{current_path}}{{ pagination_urls.next.url }}'"> → </button>
+    {% endif %}
+</div>

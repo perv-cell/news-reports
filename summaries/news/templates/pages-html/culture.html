@@ -1,0 +1,11 @@
+{% extends './base.html' %}
+
+{% block body %}
+    {% if all_news %}
+        {% for data in all_news %}
+            {% include 'components/card.html' %}
+        {% endfor %}
+    {% else %}
+        <p>Пока новостей нет</p>    
+    {% endif %}
+{% endblock body %}

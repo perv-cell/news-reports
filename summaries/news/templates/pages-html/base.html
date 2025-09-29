@@ -10,7 +10,12 @@
 <body>
     <div class="body-base">
         {% include 'components/navbar.html' %}
-        <div class="headers">{% block header %} {% endblock %}</div>
+        {% if current_page != 1 %}
+            {% include 'components/pagination.html' %}
+        {% endif %}
+        {% if current_page == 1 %}
+            <div class="headers">{{title}}</div>
+        {% endif %}
         <main>
             <div class="cards">
             {% block body %}
@@ -21,11 +26,13 @@
             {% endblock %}
             </div>
         </main>
-        
-        {% include 'components/footer.html' %}
-    </div>
+    {% include 'components/pagination.html' %}
+    {% include 'components/footer.html' %}
 </body>
 <style>
+
+
+
 html, body {
     height: 100%;
     margin: 0;
@@ -51,6 +58,9 @@ main {
 }
 
 .cards{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     border-radius: 5px;
     border: 3px solid black;
     box-shadow: 4px 4px 8px rgb(46, 46, 209);
@@ -61,7 +71,7 @@ main {
     border-radius: 5px;
     border: 3px solid black;
     box-shadow: 4px 4px 8px rgb(46, 46, 209);
-    width: 25;
+    width: 25%;
 }
 
 .headers {
@@ -73,7 +83,44 @@ main {
 }
 
 
-
+.pagination{
+    width: 100%;
+    height: 40px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+}
+.btn-pagination{
+    border: 1px, solid, black;
+    background: linear-gradient(135deg,  #3855d5 0%, #7a2bc9 100%);
+    height: 80%;
+    color: blanchedalmond;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.btn-pagination:hover{
+    transform: scale(1.05);
+    background: linear-gradient(135deg,  #7a2bc9 0%, #3855d5 100%);
+}
+.pagination-left-button{
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    width: 7%;
+}
+.pagination-right-button{
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    width: 7%;
+}   
+.btn-page-number{
+    width:3%;
+}
+.current{
+    background: #1da4f2;
+}
 
 </style>
 

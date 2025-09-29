@@ -1,50 +1,184 @@
-<div class="border-card">
+<div class="news-card">
     <div class="card-image">
-    {% if data.image_url %}    
-        <img src="{{ image_url }}" alt="Картинка доступна на сайте источника">
-    {% else %}
-        <p>Изображение не найдено</p> 
-    {% endif %}       
+        {% if data.image_url %}    
+            <img src="{{ data.image_url }}" alt="{{ data.title }}" class="card-img">
+        {% else %}
+            <div class="no-image">
+                <span>📷</span>
+                <p>Изображение не найдено</p> 
+            </div>
+        {% endif %}       
     </div>
-    <div class="card-text">
-        <div class="text-title">
-        {% if data.title_text %}  
-            {{title_text}}
-        {% else %}
-            <p>Заголовок новости отсутсвует</p> 
-        {% endif %} 
+    
+    <div class="card-content">
+        <h3 class="card-title">{{ data.title }}</h3>
+        
+        <div class="card-meta">
+            <div class="meta-item">
+                {{ data.author|safe}}
+            </div>
+            
+            <div class="meta-item">
+                <span class="icon">🌐</span>
+                <span class="source"><a href="{{ data.source}}">Источник</a></span>
+            </div>
+            
+            <div class="meta-item">
+                <span class="icon">👁️</span>
+                <span>{{ data.views|default:0 }}</span>
+            </div>
+            
+            <div class="meta-item">
+                <span class="icon">🕒</span>
+                <time>{{ data.created_at|date:"d.m.Y H:i" }}</time>
+            </div>
         </div>
-        <div class="text-source">
-        {% if data.text_source %}  
-            <i>Ссылка на источник:</i>
-            <a href={{text_source}}>
-        {% else %}
-            <p>Источник скрыл новость</p> 
-        {% endif %} 
-        </div>
-        <div class="text-time">
-            {% if data.text_time %}  
-                {{text_time}}
-            {% else %}
-                <p>Новость недели</p> 
-            {% endif %}
+        
+        <div class="card-actions">
+            <button class="btn-read">Читать</button>
+            <button class="btn-save">💾</button>
         </div>
     </div>
 </div>
 
 <style>
-
-.border-card{
+.news-card {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap:10px;
-    border: 3px solid green;
-    box-shadow: 3px 4px 8px greenyellow;
-    border-radius: 5px; 
-    width: 30%;
-    margin:10px;   
+    flex-direction: column;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    max-width: 300px;
+    margin: 15px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
 }
 
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card-image {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.news-card:hover .card-img {
+    transform: scale(1.05);
+}
+
+.no-image {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.no-image span {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.card-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0 0 15px 0;
+    color: #2d3748;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #718096;
+}
+
+.meta-item .icon {
+    font-size: 1rem;
+}
+
+.source {
+    word-break: break-all;
+}
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.btn-read {
+    flex: 1;
+    padding: 10px 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-read:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    transform: translateY(-1px);
+}
+
+.btn-save {
+    padding: 10px 15px;
+    background: #e2e8f0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-save:hover {
+    background: #cbd5e0;
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .news-card {
+        max-width: 100%;
+        margin: 10px 0;
+    }
+    
+    .card-meta {
+        grid-template-columns: 1fr;
+    }
+}
 </style>

@@ -1,18 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в систему</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="logo">🔐</div>
+                <h2>Добро пожаловать</h2>
+                <p class="mb-0">Войдите в свой аккаунт</p>
+            </div>
+            
+            <div class="login-body">
+                <form method="POST" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    
+                    {% if form.errors %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Неправильное имя пользователя или пароль.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                    {% endif %}
+                    
+                    {% if next %}
+                        {% if user.is_authenticated %}
+                        <div class="alert alert-warning" role="alert">
+                            У вашей учетной записи нет доступа к этой странице.
+                        </div>
+                        {% else %}
+                        <div class="alert alert-info" role="alert">
+                            Пожалуйста, войдите чтобы увидеть эту страницу.
+                        </div>
+                        {% endif %}
+                    {% endif %}
 
-{% extends './base.html' %}
+                    <div class="form-floating">
+                        <input type="text" 
+                               class="form-control" 
+                               id="username" 
+                               name="username" 
+                               placeholder="Имя пользователя"
+                               required
+                               autofocus>
+                        <label for="username">Имя пользователя</label>
+                    </div>
+                    
+                    <div class="form-floating">
+                        <input type="password" 
+                               class="form-control" 
+                               id="password" 
+                               name="password" 
+                               placeholder="Пароль"
+                               required>
+                        <label for="password">Пароль</label>
+                    </div>
+                    
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="remember">
+                        <label class="form-check-label" for="remember">
+                            Запомнить меня
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-login w-100 btn-lg">
+                        Войти
+                    </button>
+                    
+                    <input type="hidden" name="next" value="{{ next }}">
+                </form>
+                
+                <div class="additional-links">
+                    <div class="mb-2">
+                        <a href="">Забыли пароль?</a>
+                    </div>
+                    <div>
+                        Нет аккаунта? <a href="{% url 'login' %}">Зарегистрироваться</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-{% block title %} Main Page {% endblock %}
-
-{% block body %} 
-<div>
-    главная страница 
-</div>
-{% endblock body%}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
 
 <style>
-
-</style>
-
-<script>
-    
-</script>
+        .login-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .login-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .login-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .login-body {
+            padding: 30px;
+        }
+        
+        .form-floating {
+            margin-bottom: 1rem;
+        }
+        
+        .btn-login {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .additional-links {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .additional-links a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .additional-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+    </style>

@@ -49,7 +49,7 @@ LOGGING = {
             'level': 'INFO',
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
-            'formatter': 'simple'
+            'formatter': 'simple',
         },
         'django_file': {
             'level': 'INFO',
@@ -57,6 +57,7 @@ LOGGING = {
             'filename': LOG_DIR / 'django.log',
             'maxBytes': 1024 * 1024 * 5, 
             'backupCount': 5,
+            'encoding': 'utf-8',
             'formatter': 'verbose',
         },
         'app_file': {
@@ -66,6 +67,7 @@ LOGGING = {
             'when': 'midnight',
             'interval': 1,
             'backupCount': 30,
+             'encoding': 'utf-8',
             'formatter': 'verbose',
         },
         'error_file': {
@@ -74,6 +76,7 @@ LOGGING = {
             'filename': LOG_DIR / 'errors.log',
             'maxBytes': 1024 * 1024 * 5,
             'backupCount': 5,
+             'encoding': 'utf-8',
             'formatter': 'verbose',
         },
         'mail_admins': {
@@ -132,7 +135,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'news.apps.NewsConfig',
     'news',
 ]
 
