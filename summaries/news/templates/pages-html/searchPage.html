@@ -1,18 +1,35 @@
 {% extends './base.html' %}
-
+{% block search_news %}
+<div class="search-header mb-4">
+        {% if search_query %}
+            <div class="search-info">
+                <p class="text-muted">
+                    {% if search_query %}
+                        <i>По запросу: <strong>{{ search_query }}</strong></i>
+                    {% endif %}
+                    <i>найдено <strong>{{ results_count }}</strong> новостей</i>                    
+                </p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
 {% block body %}
     {% if all_news %}
         {% for data in all_news %}
             {% include 'components/card.html' %}
         {% endfor %}
     {% else %}
-        <p>Пока новостей нет</p>    
+        {% if search_query %}
+            <div class="alert alert-info text-center">
+                <h4>Ничего не найдено</h4>
+                <p>Попробуйте изменить поисковый запрос или использовать другие ключевые слова.</p>
+            </div>
+        {% else %}
+            <p class="text-center">Пока новостей нет</p>
+        {% endif %}
     {% endif %}
 {% endblock body %}
+
+
 <style>
-
 </style>
-
-<script>
-    
-</script>

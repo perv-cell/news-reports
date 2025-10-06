@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .news-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .news-header {
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .news-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .news-meta {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .news-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .btn-custom {
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .comments-section {
+            margin-top: 40px;
+            border-top: 1px solid #e9ecef;
+            padding-top: 30px;
+        }
+        .comment {
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+        }
+        .comment-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .comment-author {
+            font-weight: bold;
+            color: #495057;
+        }
+        .comment-date {
+            color: #6c757d;
+            font-size: 0.8rem;
+        }
+        .like-count {
+            margin-left: 10px;
+            font-weight: bold;
+        }
+        .btn-like.active {
+            background-color: #dc3545;
+            color: white;
+        }
+        .btn-save.active {
+            background-color: #28a745;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="news-container">
+        <!-- Кнопка назад -->
+        <div class="mb-4">
+            <button onclick="history.back()" class="btn btn-outline-secondary">
+                ← Назад к новостям
+            </button>
+        </div>
+
+        <!-- Заголовок и мета-информация -->
+        <div class="news-header">
+            <h1 class="display-4">{{ title }}</h1>
+            <div class="news-meta">
+                <span class="me-3"><strong>Автор:</strong> {{ author }}</span>
+                <span class="me-3"><strong>Источник:</strong> {{ source }}</span>
+                <span class="me-3"><strong>Тема:</strong> {{ topic }}</span>
+                <span class="me-3"><strong>Просмотры:</strong> {{ views }}</span>
+                <span><strong>Опубликовано:</strong> {{ created_at }}</span>
+            </div>
+        </div>
+
+        <!-- Изображение новости -->
+        {% if image_url %}
+        <div class="text-center">
+            <img src="{{ image_url }}" alt="{{ title }}" class="news-image">
+        </div>
+        {% endif %}
+
+        <!-- Основной текст -->
+        <div class="news-content">
+            {{ main_text|linebreaks }}
+        </div>
+
+        <!-- Кнопки действий -->
+        <div class="action-buttons">
+            <button id="likeBtn" class="btn btn-outline-danger btn-custom" onclick="toggleLike()">
+                ❤️ Нравится <span id="likeCount" class="like-count">0</span>
+            </button>
+            
+            <button id="saveBtn" class="btn btn-outline-success btn-custom" onclick="toggleSave()">
+                💾 Сохранить
+            </button>
+            
+            <button class="btn btn-outline-primary btn-custom" onclick="shareNews()">
+                📤 Поделиться
+            </button>
+        </div>
+
+        <!-- Секция комментариев -->
+        <div class="comments-section">
+            <h3>Комментарии</h3>
+            
+            <!-- Форма добавления комментария -->
+            <div class="mb-4">
+                <form id="commentForm">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="commentText" class="form-label">Оставьте комментарий:</label>
+                        <textarea class="form-control" id="commentText" rows="3" 
+                                  placeholder="Напишите ваш комментарий..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Отправить комментарий</button>
+                </form>
+            </div>
+
+            <!-- Список комментариев -->
+            <div id="commentsList">
+                <!-- Комментарии будут добавляться здесь -->
+                <div class="comment">
+                    <div class="comment-header">
+                        <span class="comment-author">Алексей Петров</span>
+                        <span class="comment-date">2 часа назад</span>
+                    </div>
+                    <p>Очень интересная статья! Спасибо за информацию.</p>
+                </div>
+                
+                <div class="comment">
+                    <div class="comment-header">
+                        <span class="comment-author">Мария Иванова</span>
+                        <span class="comment-date">5 часов назад</span>
+                    </div>
+                    <p>Хотелось бы больше подробностей по этой теме.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Лайки
+        let likesCount = 0;
+        let isLiked = false;
+        
+        function toggleLike() {
+            const likeBtn = document.getElementById('likeBtn');
+            const likeCount = document.getElementById('likeCount');
+            
+            if (isLiked) {
+                likesCount--;
+                likeBtn.classList.remove('active');
+                likeBtn.innerHTML = '❤️ Нравится <span id="likeCount" class="like-count">' + likesCount + '</span>';
+            } else {
+                likesCount++;
+                likeBtn.classList.add('active');
+                likeBtn.innerHTML = '❤️ Нравится <span id="likeCount" class="like-count">' + likesCount + '</span>';
+            }
+            
+            isLiked = !isLiked;
+            
+            // Отправка на сервер
+            fetch('/api/news/like/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCSRFToken()
+                },
+                body: JSON.stringify({
+                    news_id: getNewsIdFromURL(),
+                    action: isLiked ? 'like' : 'unlike'
+                })
+            });
+        }
+
+        // Сохранение
+        let isSaved = false;
+        
+        function toggleSave() {
+            const saveBtn = document.getElementById('saveBtn');
+            
+            if (isSaved) {
+                saveBtn.classList.remove('active');
+                saveBtn.innerHTML = '💾 Сохранить';
+            } else {
+                saveBtn.classList.add('active');
+                saveBtn.innerHTML = '💾 Сохранено';
+            }
+            
+            isSaved = !isSaved;
+            
+            // Отправка на сервер
+            fetch('/api/news/save/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCSRFToken()
+                },
+                body: JSON.stringify({
+                    news_id: getNewsIdFromURL(),
+                    action: isSaved ? 'save' : 'unsave'
+                })
+            });
+        }
+
+        // Поделиться
+        function shareNews() {
+            if (navigator.share) {
+                navigator.share({
+                    title: '{{ title }}',
+                    text: '{{ title }}',
+                    url: window.location.href,
+                })
+                .then(() => console.log('Успешный шаринг'))
+                .catch((error) => console.log('Ошибка шаринга', error));
+            } else {
+                // Fallback - копирование ссылки
+                navigator.clipboard.writeText(window.location.href);
+                alert('Ссылка скопирована в буфер обмена!');
+            }
+        }
+
+        // Комментарии
+        document.getElementById('commentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const commentText = document.getElementById('commentText').value;
+            if (!commentText.trim()) return;
+            
+            // Добавление комментария в список
+            addCommentToDOM('Вы', commentText);
+            
+            // Очистка формы
+            document.getElementById('commentText').value = '';
+            
+            // Отправка на сервер
+            fetch('/api/news/comment/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCSRFToken()
+                },
+                body: JSON.stringify({
+                    news_id: getNewsIdFromURL(),
+                    text: commentText
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    console.log('Комментарий сохранен');
+                }
+            });
+        });
+
+        function addCommentToDOM(author, text) {
+            const commentsList = document.getElementById('commentsList');
+            const commentDiv = document.createElement('div');
+            commentDiv.className = 'comment';
+            commentDiv.innerHTML = `
+                <div class="comment-header">
+                    <span class="comment-author">${author}</span>
+                    <span class="comment-date">только что</span>
+                </div>
+                <p>${text}</p>
+            `;
+            commentsList.prepend(commentDiv);
+        }
+
+        // Вспомогательные функции
+        function getCSRFToken() {
+            const cookies = document.cookie.split(';');
+            for (let cookie of cookies) {
+                cookie = cookie.trim();
+                if (cookie.startsWith('csrftoken=')) {
+                    return cookie.substring(10);
+                }
+            }
+            return null;
+        }
+
+        function getNewsIdFromURL() {
+            // Получаем ID новости из URL
+            const path = window.location.pathname;
+            const segments = path.split('/');
+            return segments[segments.length - 2]; // Предполагаем URL вида /news/123/
+        }
+
+        // Загрузка сохраненного состояния при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Загружаем лайки и сохранения с сервера
+            fetch(`/api/news/${getNewsIdFromURL()}/status/`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.liked) {
+                        toggleLike(); // Активируем лайк
+                    }
+                    if (data.saved) {
+                        toggleSave(); // Активируем сохранение
+                    }
+                    document.getElementById('likeCount').textContent = data.likes_count || 0;
+                    likesCount = data.likes_count || 0;
+                });
+        });
+    </script>
+</body>
+</html>

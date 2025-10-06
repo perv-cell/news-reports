@@ -1,6 +1,27 @@
 
 {% extends './base.html' %}
-
+    {% if user_no_registration%}
+    {% block agregate_news_info %}
+    <div class="alert alert-info text-center">
+        <h4 class="header-text-for-subheader">Добро пожаловать в агрегатор новостей</h4>
+        <i class="text-center"><p class="text-for-subheader">
+            Сайт, на который ты защёл представляет собой сводку новостей из разных сфер жизни.
+            Политика, экономика, культура, финансы, технологии и другие. 
+            Новости извлекаються из таких сайтов, как https://ria.ru/, https://www.mk.ru/news/, https://news.rambler.ru/,
+            наиболее достоверных и популярных источников. 
+            Особенность этого сайта заключается в том, что новости которые вы просматриваете, анализируютсья сайтом и собираються в 
+            определённые сводки, с каждым новым заходом, будут выдаваться наиболе актуальные и инетерсные новости лично для вас.
+            Для выстраивания перснальных сводок вам необходимо пройти регистрацию. 
+        </p></i>
+        <a  class="btn btn-outline-info button-registration"
+            href="{% url 'login' %}"
+            title="Перейти на страницу входа"
+            aria-label="Вход в систему">
+            Перейти к регистрации
+        </a>
+    </div>
+    {% endblock %}
+    {% endif %}
 {% block body %}
     {% if all_news %}
         {% for data in all_news %}

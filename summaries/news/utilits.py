@@ -92,18 +92,20 @@ if __name__ == "__main__":
 
 
 #  для пагинации 
-def generate_pagination_urls(page_obj, count_page, name_page_revers='MainPage',name_page_revers_index='MainPagePagination'):
+def generate_pagination_urls(page_obj, count_page, name_page_revers='MainPage',name_page_revers_index='MainPagePagination', pagination_dur_interva=8):
         urls = {}
-        
+        urls['pagination_dur_interva'] = pagination_dur_interva
         if page_obj.has_previous():
             prev_page = page_obj.previous_page_number()
             if prev_page == 1:
                 urls['previous'] = {'url': reverse(name_page_revers), 'title': 'Популярные новости'}
+                urls['pagination_start'] = 1 
             else:
                 urls['previous'] = {
                     'url': reverse(name_page_revers_index, args=[prev_page]),
                     'text': f'Страница {prev_page}'
                 }
+                urls['pagination_start'] = prev_page
         
         if page_obj.has_next():
             next_page = page_obj.next_page_number()
@@ -113,7 +115,19 @@ def generate_pagination_urls(page_obj, count_page, name_page_revers='MainPage',n
             }
 
         urls['page_range'] = []
-        for i in range(1, count_page + 1):
+        pagination_start = urls.get('pagination_start', 1)
+        pagination_end = count_page
+        if count_page < 8:
+            pagination_end = count_page
+        else: 
+            pagination_dur_interval = urls.get('pagination_dur_interva')
+            if pagination_start + pagination_dur_interval > count_page:
+                while (pagination_start + pagination_dur_interval) >=  count_page:
+                    pagination_start-=1  
+            pagination_end = pagination_start+pagination_dur_interval
+
+
+        for i in range(pagination_start, pagination_end + 1):
             if i == 1:
                 urls['page_range'].append({
                     'number': i,

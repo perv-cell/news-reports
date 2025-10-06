@@ -10,12 +10,15 @@
 <body>
     <div class="body-base">
         {% include 'components/navbar.html' %}
+        {% block agregate_news_info %}
+        {% endblock %}
         {% if current_page != 1 %}
             {% include 'components/pagination.html' %}
         {% endif %}
         {% if current_page == 1 %}
             <div class="headers">{{title}}</div>
         {% endif %}
+        {% block search_news %}{% endblock %}
         <main>
             <div class="cards">
             {% block body %}
@@ -77,9 +80,10 @@ main {
 .headers {
     text-align: center;
     font-size: 2.5rem;
-    margin: 30px 0;
+    margin: 20px 0;
     color: #333;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
 
@@ -120,6 +124,69 @@ main {
 }
 .current{
     background: #1da4f2;
+}
+
+
+.search-header {
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 1rem;
+    width: 50%;
+    height: 40px;
+    background: rgba(245, 245, 245, 0.612);
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+    text-justify: center;
+}
+
+.search-form-container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.search-results {
+    margin-top: 2rem;
+}
+.text-muted{
+    font-size: 18px;
+    }
+
+.text-for-subheader{
+    display: flex;
+    justify-self: center;
+    text-align: justify;
+    text-justify: inter-word;
+    width: 80%;
+    transition: all 0.3s ease;
+}
+.header-text-for-subheader:hover{
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+}
+
+.headers:hover{
+    transition: all 0.3s ease;
+    transform: scale(1.03);
+    background: #a4b1e8;
+}    
+.alert {
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+    text-justify: center;
+    height: auto;
+    width: 70%;
+    height: 80%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top:30px;
+    margin-bottom:10px;
+}
+.button-registration{
+    margin: 10px auto;
 }
 
 </style>

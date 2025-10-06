@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вход в систему</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 </head>
 <body>
     <div class="login-container">
@@ -12,38 +13,28 @@
             <div class="login-header">
                 <div class="logo">🔐</div>
                 <h2>Добро пожаловать</h2>
-                <p class="mb-0">Войдите в свой аккаунт</p>
+                <p class="mb-0">Войдите в аккаунт</p>
             </div>
             
             <div class="login-body">
-                <form method="POST" action="{% url 'login' %}">
+                <form method="POST" action="{% url 'signin' %}">
                     {% csrf_token %}
                     
-                    {% if form.errors %}
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        Неправильное имя пользователя или пароль.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    </div>
+                    {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-{{message.tags}}" role="alert">
+                            {{message}}
+                        </div>
+                        {% endfor %}
                     {% endif %}
                     
-                    {% if next %}
-                        {% if user.is_authenticated %}
-                        <div class="alert alert-warning" role="alert">
-                            У вашей учетной записи нет доступа к этой странице.
-                        </div>
-                        {% else %}
-                        <div class="alert alert-info" role="alert">
-                            Пожалуйста, войдите чтобы увидеть эту страницу.
-                        </div>
-                        {% endif %}
-                    {% endif %}
-
                     <div class="form-floating">
                         <input type="text" 
                                class="form-control" 
                                id="username" 
                                name="username" 
                                placeholder="Имя пользователя"
+                               value="{{ username }}"
                                required
                                autofocus>
                         <label for="username">Имя пользователя</label>
@@ -55,6 +46,7 @@
                                id="password" 
                                name="password" 
                                placeholder="Пароль"
+                               value="{{ password }}"
                                required>
                         <label for="password">Пароль</label>
                     </div>
@@ -70,7 +62,6 @@
                         Войти
                     </button>
                     
-                    <input type="hidden" name="next" value="{{ next }}">
                 </form>
                 
                 <div class="additional-links">
@@ -90,68 +81,126 @@
 </html>
 
 <style>
-        .login-container {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+.login-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
         
-        .login-card {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            width: 100%;
-            max-width: 400px;
-        }
+.login-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%;
+    max-width: 400px;
+}
         
-        .login-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px 20px;
-            text-align: center;
-        }
+.login-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+}
         
-        .login-body {
-            padding: 30px;
-        }
+.login-body {
+    padding: 30px;
+}
         
-        .form-floating {
-            margin-bottom: 1rem;
-        }
+.form-floating {
+    margin-bottom: 1rem;
+}
         
-        .btn-login {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-            color: white;
-            padding: 12px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
+.btn-login {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    padding: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
         
-        .btn-login:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
         
-        .additional-links {
-            text-align: center;
-            margin-top: 20px;
-        }
+.additional-links {
+    text-align: center;
+    margin-top: 20px;
+}
         
-        .additional-links a {
-            color: #667eea;
-            text-decoration: none;
-        }
+.additional-links a {
+    color: #667eea;
+    text-decoration: none;
+}
         
-        .additional-links a:hover {
-            text-decoration: underline;
-        }
+.additional-links a:hover {
+    text-decoration: underline;
+    }
         
-        .logo {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+.logo {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+.alert{
+     border-radius: 15px;
+    width: 100%;
+    display: flex;
+    justify-items: center;
+    transition: all 0.3s ease;
+
+}
+.alert-success{
+    background: linear-gradient(-125deg, rgb(3, 249, 48) 0%, rgb(0, 254, 144) 100%);
+    color: rgb(215, 233, 250);
+}
+.alert-error{
+    background: linear-gradient(-125deg, rgb(212, 74, 74) 0%, rgb(255, 0, 0) 100%);
+    color: aliceblue;
+ }
+
+.alert:hover{
+    transform:translateY(-2px)
+}
+
+.form-control:autofocus {
+border-color: #667eea;
+    background-color: #f8f9ff;
         }
-    </style>
+.form-control:invalid {
+    border-color: #dc3545;
+}
+    
+.form-control:valid {
+    border-color: #28a745;
+}
+
+@media (max-width: 576px) {
+    .login-container {
+        padding: 10px;
+    }
+        
+    .login-card {
+        border-radius: 15px;
+    }
+        
+    .login-body {
+        padding: 30px 20px;
+    }
+        
+    .login-header {
+        padding: 30px 20px;
+    }
+        
+    .logo {
+        font-size: 2.5rem;
+        }
+    }    
+</style>
+<sripts>
+    document
+</sripts>
+    
