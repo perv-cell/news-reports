@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.urls import reverse
-from news.models import NewsDate 
+from news.models import NewsDate, SaveNews, LikeNews, VeiwsNews
 from django.core.paginator import Paginator
 from news.utilits import generate_pagination_urls
 from django.utils import timezone
@@ -10,6 +10,8 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 import json 
 from django.http import JsonResponse,Http404, HttpResponse
 import math
@@ -41,74 +43,127 @@ class MainPage(View):
             'pagination_urls': pagination_urls,
         })
 
-class ApiOpenNews(View):
-    def post(self, request, *args, **kwargs):
-        news_id = request.POST.get("news_id")
-
         
-
+@method_decorator(csrf_exempt, name='dispatch')
 class OpenNews(View):
-    def get(self, request,*args, **kwargs):
-        return render(
-                request,
-                'not-more-info-news.html', 
-            )
-    
-        data_id = request.GET.get('id')
-        data_topic = request.GET.get('topic')
-        current_page = request.GET.get('page')
-        data_title = request.GET.get('title')
+    def post(self, request, *args, **kwargs):
+        try:
+            raw_body = request.body.decode('utf-8')
+            
+            data = json.loads(request.body)
+            
+            id = data.get("id")
+            topic = data.get("topic")
+            page = data.get("page")
+
+            news_object = NewsDate.objects.filter(id=id).first()
+
+            if news_object is None:
+                logger.warning(f'Новость с ID {id} не найдена')
+                return JsonResponse({'error': 'Статья не найдена'}, status=404)
+            
+            session_data = {
+                'news_id':id,
+                'title': news_object.title,
+                'image_url': news_object.image_url,
+                'main_text': news_object.main_text,
+                'author': news_object.author,
+                'source': news_object.source,
+                'views': news_object.views,
+                'topic': news_object.topic,
+                'page': page,
+            }
+
+            if news_object.created_at:
+                session_data['created_at'] = news_object.created_at.isoformat()
+            else:
+                session_data['created_at'] = None
+                           
+            request.session['news_card'] = session_data
+
+            redirect_url = reverse('open_news')
+            
+            response_data = {
+                'success': True,
+                'redirect_url': redirect_url  
+            }
+            
+            return JsonResponse(response_data)
+            
+        except json.JSONDecodeError as e:
+            logger.error(f'Ошибка парсинга JSON: {e}')
+            return JsonResponse({'error': 'Неверный формат данных'}, status=400)
         
-        if not data_id:
-            raise Http404("ID новости не указан")   
+        except Exception as e:
+            logger.error(f'Неожиданная ошибка: {e}', exc_info=True)
+            return JsonResponse({'error': 'Внутренняя ошибка сервера'}, status=500)
 
-        if title is None :
-            pass
+class NewsCardOpen(View):
+    def get(self, request ,*args, **kwargs):
 
-        news_object = NewsDate.objects.get(id=data_id)
+        news_card = request.session.get('news_card', {})
 
-        if news_object is None:
-            logger.warning("объект не найден в бд")
+        if 'news_card' in request.session:
 
-        title = news_object.title
-        image_url = news_object.image_url
-        main_text = news_object.main_text
-        author = news_object.author
-        source = news_object.source
-        views = news_object.views
-        topic = news_object.topic
-        created_at = news_object.created_at 
+            news = NewsDate.objects.filter(id=news_card.get('news_id',1)).first()            
 
-        if news_object is not None:
+            likes_count = LikeNews.objects.filter(news=news).all()
+
             return render(
                 request,
-                'more-information-new.html', 
+                'pages-html/more-information-new.html', 
                 context={
-                'title' : title,
-                'image_url' : image_url,
-                'main_text' :main_text,
-                'author' : author,
-                'source' : source,
-                'views' : views,
-                'topic' : topic,
-                'created_at' : created_at,        
-                }
-            )
+                'news_id':news_card.get('news_id',1),   
+                'title' : news_card.get('title',"Специальный выпуск"),
+                'image_url' : news_card.get('image_url',"К сожалению картинка не сохранилась"),
+                'main_text' :news_card.get('main_text',"Новость не найдена"),
+                'author' : news_card.get('author',"Автор не орпеделён"),
+                'source' : news_card.get('source',"Неизвестный источник"),
+                'views' : int(news_card.get('views',0)),
+                'topic' : news_card.get('topic',""),
+                'created_at' :news_card.get('created_at',"дата публикации неизвестна"),
+                'page': news_card.get('page',"/"),
+                'likes_count':len(likes_count),
+                })
         else:
             return render(
                 request,
-                'not-more-info-news.html', 
+                'pages-html/not-more-information-news.html'
             )
 
-class NewsLikeView(View):
-    def post(self, request):
-        data = json.loads(request.body)
-        news_id = data.get('news_id')
-        action = data.get('action')
-        
-        return JsonResponse({'status': 'success'})
 
-class NewsSaveView(View):
+class NewsLike(View):
+
+    def post(self, request, *args, **kwargs):
+        try:
+            data = json.loads(request.body)
+            news_id = data.get('news_id')
+            action = data.get('action')
+
+            news = NewsDate.objects.filter(id=news_id).first()
+            if not news:
+                return JsonResponse({'status': 'error', 'message': 'News not found'}, status=404)
+
+            if action == 'like':
+                logger.debug(f"новость {news_id} лайкнули")
+                LikeNews.objects.create(users=request.user, news=news)
+            else:
+                logger.debug(f"новость {news_id} дизлайкнули")
+                LikeNews.objects.filter(users=request.user, news=news).delete()
+            
+            likes_count = news.like_news.count()
+            
+            return JsonResponse({
+                'status': 'success', 
+                'likes_count': likes_count,
+                'action': action
+            })
+            
+        except Exception as e:
+            logger.error(f"Error in like view: {e}")
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+
+class NewsSave(View):
     def post(self, request):
         data = json.loads(request.body)
         news_id = data.get('news_id')

@@ -4,8 +4,10 @@ from . import views
 urlpatterns = [    
     path("", views.MainPage.as_view(), name='MainPage'),
     path("<int:news_page>/", views.MainPage.as_view(), name='MainPagePagination'),
-    path("api/open/news", views.ApiOpenNews.as_view(), name="api_open_news"),
-    path("open-news/",views.OpenNews.as_view(), name='open_news' ),
+    path("api/open/news", views.OpenNews.as_view(), name="api_open_news"),
+    path("api/news/like", views.NewsLike.as_view(),name='like_news'),
+    path("api/news/save", views.NewsSave.as_view(),name='save_news'),
+    path("open-news/",views.NewsCardOpen.as_view(), name='open_news' ),
     path('popular-news',views.PopularNews.as_view(), name='popular_news' ),
     path('popular-news/<int:news_page>',views.PopularNews.as_view(), name='popular_news_index' ),
     path('today-news', views.TodayNews.as_view(), name="today_news"),

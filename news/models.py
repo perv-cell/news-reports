@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 data_from_parser_page = [...]
 
@@ -17,9 +18,41 @@ class NewsDate(models.Model):
     def __str__(self):
         return self.title
 
-class UserNews(models.Model):
+class SaveNews(models.Model):
     id = models.AutoField(primary_key=True)
-    mail = models.CharField(max_length=100)
-    password = models.CharField(max_length=500)
-    news_ids = models.CharField()
+    news = models.ForeignKey(
+        NewsDate,
+        on_delete=models.CASCADE,
+        related_name='save_news'
+    )
+    users = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='save_users')
+    
+class LikeNews(models.Model):
+    users = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='like_users')
+    news = models.ForeignKey(
+        NewsDate,
+        on_delete=models.CASCADE,
+        related_name='like_news'
+    )
+    class Meta:
+        unique_together = ['users', 'news']
+
+class VeiwsNews(models.Model):
+    users = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='view_users')
+    news = models.ForeignKey(
+        NewsDate,
+        on_delete=models.CASCADE,
+        related_name='view_news'
+    )
+    class Meta:
+        unique_together = ['users', 'news']
 

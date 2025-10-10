@@ -32,6 +32,11 @@
                 <span class="icon">🕒</span>
                 <time>{{ data.created_at|date:"d.m.Y H:i" }}</time>
             </div>
+            <div class="meta-item">
+                <button id="likeBtn" class="btn btn-outline-danger btn-custom" onclick="toggleLike()">
+                    ❤️ <span id="likeCount" class="like-count">{{count_likes|default:0}}</span>
+                </button>
+            </div>
         </div>
         
         <div class="card-actions">
@@ -198,22 +203,26 @@ async function handleReadClick(button){
     const data_id= button.getAttribute('data-id')
     const data_title = button.getAttribute('data-title')
 
-    const params = new URLSearchParams({
-    topic: data_topic,
-    page: current_page,
-    id: data_id,
-    title: data_title
-    });
+    const data = {
+        topic: data_topic,
+        page: current_page,
+        id: data_id,
+        title: data_title
+    };
 
-    // активируется элемент загрузки 
 
-    const response = await fetch(`/open-news/?${params}`, {
-    method: 'GET',
-    headers: {
-        'X-Requested-With': 'XMLHttpRequest'
-    }
+    const response = await fetch(`api/open/news`, {
+        method: 'POST',
+        headers: {
+        'Content-Type':'application/json',
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRFToken': getCSRFToken()
+        },
+        body:JSON.stringify(data),
+        credentials: 'same-origin', 
+        mode: 'same-origin'
     })
-        
+    
     if (response.status === 404) {
         throw new Error('Статья не найдена');
     }
@@ -224,8 +233,74 @@ async function handleReadClick(button){
         
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
+        alert("К сожалению данная новость стала недоступна")
+    }
+    const result  = await response.json();
+    if (result.success){
+        window.location.href=result.redirect_url;
     }
 
+    let likesCount = 0;
+    let isLiked = false;
+        
+    function toggleLike() {
+        const likeBtn = document.getElementById('likeBtn');
+        const likeCount = document.getElementById('likeCount');
+            
+    if (isLiked) {
+        likesCount--;
+        likeBtn.classList.remove('active');
+        likeBtn.innerHTML = '❤️ Нравится <span id="likeCount" class="like-count">' + likesCount + '</span>';
+    } else {
+        likesCount++;
+        likeBtn.classList.add('active');
+        likeBtn.innerHTML = '❤️ Нравится <span id="likeCount" class="like-count">' + likesCount + '</span>';
+    }
+            
+    isLiked = !isLiked;
+            
+    fetch('/api/news/like/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCSRFToken()
+        },
+        body: JSON.stringify({
+            news_id: getNewsIdFromURL(),
+            action: isLiked ? 'like' : 'unlike'
+            })
+        });
+    }
+        
+    let isSaved = false;
+        
+    function toggleSave() {
+        const saveBtn = document.getElementById('saveBtn');
+            
+        if (isSaved) {
+            saveBtn.classList.remove('active');
+            saveBtn.innerHTML = '💾 Сохранить';
+        } else {
+            saveBtn.classList.add('active');
+            saveBtn.innerHTML = '💾 Сохранено';
+        }
+            
+        isSaved = !isSaved;
+            
+            fetch('/api/news/save/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCSRFToken()
+                },
+                body: JSON.stringify({
+                    news_id: getNewsIdFromURL(),
+                    action: isSaved ? 'save' : 'unsave'
+                })
+            });
+        }
+
+    
 }
 
 function getCSRFToken() {
