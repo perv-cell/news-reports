@@ -231,9 +231,9 @@ class PopularNews(View):
 class YestardayNews(View):
     def get(self, request, news_page=None, *args, **kwargs):
         page_number = news_page or 1
-        yesterday = timezone.now().date() - timedelta(days=1)
-        today = timezone.now().date()
-        all_news = NewsDate.objects.filter(created_at__date__range=[yesterday,today]).order_by('-created_at')
+        yesterday_2 = timezone.now().date() - timedelta(days=2)
+        yesterday_1 = timezone.now().date() - timedelta(days=1)
+        all_news = NewsDate.objects.filter(created_at__date__range=[yesterday_2,yesterday_1]).order_by('-created_at')
         count_news = 15
         paginator = Paginator(all_news,count_news)
         count_page = paginator.count
@@ -255,7 +255,8 @@ class TodayNews(View):
     def get(self, request, news_page=None, *args, **kwargs):
         page_number = news_page or 1
         today = timezone.now().date()
-        all_news = NewsDate.objects.filter(created_at__date=today).order_by('-created_at')
+        yestarday = timezone.now().date()- timedelta(days=1)
+        all_news = NewsDate.objects.filter(created_at__date__range=[yestarday,today]).order_by('-created_at')
         count_news = 15
         paginator = Paginator(all_news,count_news)
         count_page = paginator.count
