@@ -119,7 +119,7 @@ LOGGING = {
 SECRET_KEY = 'django-insecure-mff!&j4wcyl^b)b78#xg_1bo-aoi6z^i_()u-a(4!+n7qoju5v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['yourpopularpage.ru', '146.103.121.82','127.0.0.1']
 
