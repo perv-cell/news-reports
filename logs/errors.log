@@ -2902,3 +2902,213 @@ Traceback (most recent call last):
     return super().execute(query, params)
            ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
 django.db.utils.OperationalError: no such table: news_newsdate
+ERROR 2025-10-11 10:43:03,382 log 5868 3952 Internal Server Error: /open-news/149
+Traceback (most recent call last):
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\views\generic\base.py", line 144, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Ilia\news-reports\news\views.py", line 129, in get
+    return render(
+        request,
+        'pages-html/not-more-information-news.html'
+    )
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: pages-html/not-more-information-news.html
+ERROR 2025-10-11 10:54:27,906 log 11160 10676 Internal Server Error: /open-news/0
+Traceback (most recent call last):
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\views\generic\base.py", line 144, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Ilia\news-reports\news\views.py", line 109, in get
+    news_object = NewsDate.objects.get(id=id_news)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\db\models\query.py", line 633, in get
+    raise self.model.DoesNotExist(
+        "%s matching query does not exist." % self.model._meta.object_name
+    )
+news.models.NewsDate.DoesNotExist: NewsDate matching query does not exist.
+ERROR 2025-10-11 11:15:19,640 log 9712 14424 Internal Server Error: /open-news/148
+Traceback (most recent call last):
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\views\generic\base.py", line 144, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Ilia\news-reports\news\views.py", line 70, in get
+    if id_news >=1:
+       ^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'str' and 'int'
+ERROR 2025-10-11 11:19:04,326 log 9712 14424 Internal Server Error: /open-news/148
+Traceback (most recent call last):
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\views\generic\base.py", line 144, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Ilia\news-reports\news\views.py", line 70, in get
+    if id_news >=1:
+       ^^^^^^^^^^^
+TypeError: '>=' not supported between instances of 'str' and 'int'
+ERROR 2025-10-11 11:19:42,220 log 14380 11952 Internal Server Error: /open-news/0
+Traceback (most recent call last):
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\views\generic\base.py", line 144, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Ilia\news-reports\news\views.py", line 73, in get
+    if news_object is not None:
+       ^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'news_object' where it is not associated with a value
+ERROR 2025-10-11 11:21:16,624 log 14896 15820 Internal Server Error: /open-news/0
+Traceback (most recent call last):
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\views\generic\base.py", line 144, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Ilia\news-reports\news\views.py", line 87, in get
+    'title': news_object.title,
+             ^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'news_object' where it is not associated with a value
+ERROR 2025-10-11 11:22:02,564 log 14896 15820 Internal Server Error: /open-news/0
+Traceback (most recent call last):
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\views\generic\base.py", line 144, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Ilia\news-reports\news\views.py", line 87, in get
+    'title': news_object.title,
+             ^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'news_object' where it is not associated with a value
+ERROR 2025-10-11 11:22:03,691 log 14896 15820 Internal Server Error: /open-news/0
+Traceback (most recent call last):
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\views\generic\base.py", line 144, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Ilia\news-reports\news\views.py", line 87, in get
+    'title': news_object.title,
+             ^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'news_object' where it is not associated with a value
+ERROR 2025-10-11 11:38:10,663 log 7264 3708 Internal Server Error: /open-news/
+Traceback (most recent call last):
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\template\loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\template\loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\template\loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        template_name,
+        ^^^^^^^^^^^^^^
+        skip=history,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\template\engine.py", line 163, in find_template
+    raise TemplateDoesNotExist(name, tried=tried)
+django.template.exceptions.TemplateDoesNotExist: base.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\views\generic\base.py", line 144, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Ilia\news-reports\news\views.py", line 48, in get
+    return render(
+        request,
+    ...<3 lines>...
+            'status_code': 400
+        })
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\template\backends\django.py", line 109, in render
+    reraise(exc, self.backend)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\template\backends\django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: base.html
+ERROR 2025-10-11 11:38:57,468 log 7264 3708 Internal Server Error: /open-news/0
+Traceback (most recent call last):
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: The view news.views.view didn't return an HttpResponse object. It returned None instead.

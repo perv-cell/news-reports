@@ -1,11 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>лалалал</title>
-</head>
-<body>
-    лалалла
-</body>
-</html>
+{% extends "./base.html" %}
+{% load static %}
+
+{% block title %}Новость не найдена{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-body text-center p-5">
+                    <div class="mb-4">
+                        <i class="bi bi-exclamation-triangle-fill text-warning" style="font-size: 4rem;"></i>
+                    </div>
+                    
+                    <h1 class="display-6 fw-bold text-dark mb-3">
+                        Ой! Что-то пошло не так
+                    </h1>
+
+                    <div class="alert alert-light border" role="alert">
+                        <i class="bi bi-info-circle me-2"></i>
+                        <strong>{{ error|default:"Произошла ошибка" }}</strong>
+                    </div>
+                    
+                    <div class="text-muted mb-4">
+                        <p class="mb-2">Возможные причины:</p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-dot"></i> Новость была удалена</li>
+                            <li><i class="bi bi-dot"></i> Неверная ссылка на новость</li>
+                            <li><i class="bi bi-dot"></i> Временные технические неполадки</li>
+                        </ul>
+                    </div>
+                    <div class="d-grid gap-3 d-md-flex justify-content-md-center">
+                        <a href="{% url 'popular_news' %}" class="btn btn-primary btn-lg px-4">
+                            <i class="bi bi-fire me-2"></i>Перейти к популярным новостям
+                        </a>
+                        <a href="{% url 'MainPage' %}" class="btn btn-outline-secondary btn-lg px-4">
+                            <i class="bi bi-house me-2"></i>На главную
+                        </a>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-top">
+                        <small class="text-muted">
+                            Если проблема повторяется, 
+                            <a href="#" class="text-decoration-none">свяжитесь с поддержкой</a>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .card {
+        border-radius: 1rem;
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    }
+    
+    .alert {
+        border-radius: 0.75rem;
+        background-color: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+    }
+    
+    .btn-primary {
+        border-radius: 0.75rem;
+        padding: 0.75rem 1.5rem;
+    }
+</style>
+{% endblock %}

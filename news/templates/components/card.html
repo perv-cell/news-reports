@@ -42,10 +42,7 @@
         <div class="card-actions">
             <button class="btn-read"
                 type="button"
-                data-current-page ='{{current_page}}'
-                data-topic="{{data.topic}}"
                 data-id="{{ data.id }}"
-                data-title="{{ data.title }}"
                 onclick="handleReadClick(this)"
                 >Читать</button>
             <button class="btn-save">💾</button>
@@ -197,52 +194,15 @@
 </style>
 <script>
 async function handleReadClick(button){
-    const current_page = button.getAttribute('data-current-page')
-    const data_topic = button.getAttribute('data-topic')
     const data_id= button.getAttribute('data-id')
-    const data_title = button.getAttribute('data-title')
 
-    const data = {
-        topic: data_topic,
-        page: current_page,
-        id: data_id,
-        title: data_title
-    };
-
-
-    const response = await fetch(`api/open/news`, {
-        method: 'POST',
-        headers: {
-        'Content-Type':'application/json',
-        'X-Requested-With': 'XMLHttpRequest',
-        'X-CSRFToken': getCSRFToken()
-        },
-        body:JSON.stringify(data),
-        credentials: 'same-origin', 
-        mode: 'same-origin'
-    })
+    window.location.href = `/open-news/${data_id}/`;
     
-    if (response.status === 404) {
-        throw new Error('Статья не найдена');
-    }
-        
-    if (response.status === 403) {
-        throw new Error('Доступ запрещен');
-    }
-        
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-        alert("К сожалению данная новость стала недоступна")
-    }
-    const result  = await response.json();
-    if (result.success){
-        window.location.href=result.redirect_url;
-    }
 
-    let likesCount = 0;
-    let isLiked = false;
+let likesCount = 0;
+let isLiked = false;
         
-    function toggleLike() {
+function toggleLike() {
         const likeBtn = document.getElementById('likeBtn');
         const likeCount = document.getElementById('likeCount');
             

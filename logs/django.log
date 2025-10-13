@@ -1278,3 +1278,118 @@ INFO 2025-10-11 07:32:59,772 basehttp 16524 15648 "GET /popular-news HTTP/1.1" 2
 INFO 2025-10-11 07:33:01,254 basehttp 16524 15648 "GET / HTTP/1.1" 200 138359
 INFO 2025-10-11 07:33:21,680 basehttp 16524 15648 "GET / HTTP/1.1" 200 139934
 INFO 2025-10-11 07:33:22,598 basehttp 16524 15648 "GET /yestarday-news HTTP/1.1" 200 138420
+INFO 2025-10-11 08:11:04,083 autoreload 7076 12792 Watching for file changes with StatReloader
+ERROR 2025-10-11 08:11:05,963 log 7076 14816 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\utils\deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\http\request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+WARNING 2025-10-11 08:11:05,975 basehttp 7076 14816 "GET / HTTP/1.1" 400 143
+INFO 2025-10-11 08:12:57,996 autoreload 7076 12792 C:\Users\Ilia\news-reports\newsReports\settings.py changed, reloading.
+INFO 2025-10-11 08:12:58,634 autoreload 1564 17380 Watching for file changes with StatReloader
+ERROR 2025-10-11 08:12:59,217 log 1564 12100 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\utils\deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Users\Ilia\news-reports\myenv\Lib\site-packages\django\http\request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+WARNING 2025-10-11 08:12:59,219 basehttp 1564 12100 "GET / HTTP/1.1" 400 77975
+INFO 2025-10-11 08:13:17,686 autoreload 1564 17380 C:\Users\Ilia\news-reports\newsReports\settings.py changed, reloading.
+INFO 2025-10-11 08:13:52,095 autoreload 17124 17888 Watching for file changes with StatReloader
+INFO 2025-10-11 08:13:54,311 basehttp 17124 18128 "GET / HTTP/1.1" 200 138359
+INFO 2025-10-11 08:14:03,509 basehttp 17124 18128 "GET /2/ HTTP/1.1" 200 140474
+WARNING 2025-10-11 08:14:05,827 basehttp 17124 18128 "POST /2/api/open/news HTTP/1.1" 404 10410
+INFO 2025-10-11 10:41:57,960 autoreload 5300 12968 Watching for file changes with StatReloader
+INFO 2025-10-11 10:41:59,926 basehttp 5300 14112 "GET / HTTP/1.1" 200 129335
+WARNING 2025-10-11 10:42:00,655 basehttp 5300 14112 "GET /favicon.ico HTTP/1.1" 404 10397
+WARNING 2025-10-11 10:42:03,842 basehttp 5300 14112 "GET /open-news/149 HTTP/1.1" 404 10403
+WARNING 2025-10-11 10:42:07,527 basehttp 5300 14112 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 10508
+WARNING 2025-10-11 10:42:32,977 basehttp 5300 14112 "GET /open-news/149 HTTP/1.1" 404 10403
+INFO 2025-10-11 10:42:58,990 autoreload 5300 12968 C:\Users\Ilia\news-reports\news\urls.py changed, reloading.
+INFO 2025-10-11 10:42:59,732 autoreload 5868 15484 Watching for file changes with StatReloader
+ERROR 2025-10-11 10:43:03,385 basehttp 5868 3952 "GET /open-news/149 HTTP/1.1" 500 99090
+INFO 2025-10-11 10:53:32,486 autoreload 5868 15484 C:\Users\Ilia\news-reports\news\views.py changed, reloading.
+INFO 2025-10-11 10:53:33,414 autoreload 16428 10192 Watching for file changes with StatReloader
+INFO 2025-10-11 10:53:34,986 basehttp 16428 16228 "GET /open-news/149 HTTP/1.1" 200 13409
+INFO 2025-10-11 10:53:41,325 basehttp 16428 16228 "GET /open-news/12 HTTP/1.1" 200 13234
+INFO 2025-10-11 10:54:23,832 autoreload 16428 10192 C:\Users\Ilia\news-reports\news\views.py changed, reloading.
+INFO 2025-10-11 10:54:24,694 autoreload 11160 10532 Watching for file changes with StatReloader
+ERROR 2025-10-11 10:54:27,909 basehttp 11160 10676 "GET /open-news/0 HTTP/1.1" 500 95390
+INFO 2025-10-11 11:15:11,241 autoreload 11160 10532 C:\Users\Ilia\news-reports\news\views.py changed, reloading.
+INFO 2025-10-11 11:15:12,072 autoreload 9712 10468 Watching for file changes with StatReloader
+INFO 2025-10-11 11:15:14,893 basehttp 9712 14424 "GET / HTTP/1.1" 200 121565
+ERROR 2025-10-11 11:15:19,646 basehttp 9712 14424 "GET /open-news/148 HTTP/1.1" 500 83614
+WARNING 2025-10-11 11:15:24,144 basehttp 9712 14424 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 10259
+ERROR 2025-10-11 11:19:04,329 basehttp 9712 14424 "GET /open-news/148 HTTP/1.1" 500 83723
+INFO 2025-10-11 11:19:34,486 autoreload 9712 10468 C:\Users\Ilia\news-reports\news\views.py changed, reloading.
+INFO 2025-10-11 11:19:35,311 autoreload 14380 7800 Watching for file changes with StatReloader
+INFO 2025-10-11 11:19:37,997 basehttp 14380 11952 "GET /open-news/148 HTTP/1.1" 200 13385
+ERROR 2025-10-11 11:19:42,223 basehttp 14380 11952 "GET /open-news/0 HTTP/1.1" 500 83653
+INFO 2025-10-11 11:21:12,425 autoreload 14380 7800 C:\Users\Ilia\news-reports\news\views.py changed, reloading.
+INFO 2025-10-11 11:21:13,403 autoreload 14896 4468 Watching for file changes with StatReloader
+ERROR 2025-10-11 11:21:16,628 basehttp 14896 15820 "GET /open-news/0 HTTP/1.1" 500 83937
+ERROR 2025-10-11 11:22:02,566 basehttp 14896 15820 "GET /open-news/0 HTTP/1.1" 500 83937
+ERROR 2025-10-11 11:22:03,692 basehttp 14896 15820 "GET /open-news/0 HTTP/1.1" 500 83937
+INFO 2025-10-11 11:23:41,040 autoreload 14896 4468 C:\Users\Ilia\news-reports\news\views.py changed, reloading.
+INFO 2025-10-11 11:23:42,085 autoreload 17248 4704 Watching for file changes with StatReloader
+INFO 2025-10-11 11:23:45,993 basehttp 17248 3524 "GET /open-news/150 HTTP/1.1" 200 13102
+INFO 2025-10-11 11:23:49,329 basehttp 17248 3524 "GET / HTTP/1.1" 200 121565
+INFO 2025-10-11 11:23:51,042 basehttp 17248 3524 "GET /open-news/146 HTTP/1.1" 200 13029
+WARNING 2025-10-11 11:23:53,971 basehttp 17248 3524 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 10259
+INFO 2025-10-11 11:24:02,612 basehttp 17248 3524 "GET /open-news/150 HTTP/1.1" 200 13102
+INFO 2025-10-11 11:24:02,780 basehttp 17248 3524 "GET /open-news/150 HTTP/1.1" 200 13102
+INFO 2025-10-11 11:24:12,808 basehttp 17248 3524 "GET /open-news/150 HTTP/1.1" 200 13102
+INFO 2025-10-11 11:24:45,311 basehttp 17248 3524 "GET / HTTP/1.1" 200 121565
+WARNING 2025-10-11 11:24:45,394 basehttp 17248 3524 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 10259
+INFO 2025-10-11 11:24:53,729 basehttp 17248 3524 "GET /open-news/12 HTTP/1.1" 200 13234
+WARNING 2025-10-11 11:24:53,797 basehttp 17248 3524 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 10259
+WARNING 2025-10-11 11:24:57,775 basehttp 17248 3524 "GET /open-news/ HTTP/1.1" 404 10145
+WARNING 2025-10-11 11:24:57,836 basehttp 17248 3524 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 10259
+INFO 2025-10-11 11:37:12,815 autoreload 17248 4704 C:\Users\Ilia\news-reports\news\views.py changed, reloading.
+INFO 2025-10-11 11:37:13,568 autoreload 11860 13100 Watching for file changes with StatReloader
+INFO 2025-10-11 11:37:27,529 autoreload 11860 13100 C:\Users\Ilia\news-reports\news\urls.py changed, reloading.
+INFO 2025-10-11 11:37:28,226 autoreload 11192 13364 Watching for file changes with StatReloader
+WARNING 2025-10-11 11:37:31,818 basehttp 11192 4328 "GET /open-news/ HTTP/1.1" 404 10408
+WARNING 2025-10-11 11:37:41,278 basehttp 11192 4328 "GET /open-news/ HTTP/1.1" 404 10408
+INFO 2025-10-11 11:38:09,129 autoreload 11192 13364 C:\Users\Ilia\news-reports\news\urls.py changed, reloading.
+INFO 2025-10-11 11:38:09,806 autoreload 7264 3060 Watching for file changes with StatReloader
+ERROR 2025-10-11 11:38:10,668 basehttp 7264 3708 "GET /open-news/ HTTP/1.1" 500 144785
+INFO 2025-10-11 11:38:36,277 basehttp 7264 3708 "GET /open-news/ HTTP/1.1" 200 10228
+ERROR 2025-10-11 11:38:57,469 basehttp 7264 3708 "GET /open-news/0 HTTP/1.1" 500 74442
+INFO 2025-10-11 11:39:02,866 basehttp 7264 3708 "GET /open-news/12 HTTP/1.1" 200 13234
+INFO 2025-10-11 11:39:07,025 basehttp 7264 3708 "GET /open-news/1 HTTP/1.1" 200 12820
+INFO 2025-10-11 11:40:20,143 autoreload 7264 3060 C:\Users\Ilia\news-reports\news\views.py changed, reloading.
+INFO 2025-10-11 11:40:20,920 autoreload 6888 16048 Watching for file changes with StatReloader
+INFO 2025-10-11 11:40:23,302 basehttp 6888 6292 "GET /open-news/0 HTTP/1.1" 200 10228
+INFO 2025-10-11 11:40:30,265 basehttp 6888 6292 "GET / HTTP/1.1" 200 121565
+INFO 2025-10-11 11:40:42,822 basehttp 6888 6292 "GET /open-news/149 HTTP/1.1" 200 13409
+INFO 2025-10-11 11:43:46,800 basehttp 6888 8148 "GET / HTTP/1.1" 200 117890
+WARNING 2025-10-11 11:43:47,574 basehttp 6888 8148 "GET /news/149/ HTTP/1.1" 404 10406
+INFO 2025-10-11 11:44:59,453 autoreload 6888 16048 C:\Users\Ilia\news-reports\news\views.py changed, reloading.
+INFO 2025-10-11 11:45:00,436 autoreload 5976 11656 Watching for file changes with StatReloader
+WARNING 2025-10-11 11:45:01,274 basehttp 5976 15388 "GET /news/149/ HTTP/1.1" 404 10406
+WARNING 2025-10-11 11:45:02,302 basehttp 5976 15388 "GET /news/149/ HTTP/1.1" 404 10406
+WARNING 2025-10-11 11:45:03,876 basehttp 5976 15388 "GET /news/149/ HTTP/1.1" 404 10406
+WARNING 2025-10-11 11:46:11,206 basehttp 5976 15388 "GET /news/149/ HTTP/1.1" 404 10406
+WARNING 2025-10-11 11:46:15,648 basehttp 5976 15388 "GET /news/145/ HTTP/1.1" 404 10406
+WARNING 2025-10-11 11:46:24,850 basehttp 5976 15388 "GET /news/140/ HTTP/1.1" 404 10406
+INFO 2025-10-11 11:47:28,062 autoreload 2544 16076 Watching for file changes with StatReloader
+INFO 2025-10-11 11:47:30,194 basehttp 2544 1384 "GET / HTTP/1.1" 200 117785
+WARNING 2025-10-11 11:47:35,810 basehttp 2544 1384 "GET /open-news/148/ HTTP/1.1" 404 10421
+INFO 2025-10-11 11:48:14,337 autoreload 2544 16076 C:\Users\Ilia\news-reports\news\urls.py changed, reloading.
+INFO 2025-10-11 11:48:14,989 autoreload 6136 9056 Watching for file changes with StatReloader
+INFO 2025-10-11 11:48:17,181 basehttp 6136 6600 "GET /open-news/148/ HTTP/1.1" 200 13385
+INFO 2025-10-11 11:48:21,847 basehttp 6136 6600 "GET /3/ HTTP/1.1" 200 119946
+INFO 2025-10-11 11:48:23,899 basehttp 6136 6600 "GET /open-news/119/ HTTP/1.1" 200 12993
+INFO 2025-10-11 11:48:30,263 basehttp 6136 6600 "GET /open-news/115/ HTTP/1.1" 200 12914

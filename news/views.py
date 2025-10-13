@@ -43,94 +43,67 @@ class MainPage(View):
             'pagination_urls': pagination_urls,
         })
 
+class NewsCardOpenNoOpen(View):
+    def get(self, request):
+        return render(
+            request,
+            "pages-html/not-more-info-news.html", 
+            context={
+                'error': f"Идентификатор новости не существует.",
+                'status_code': 400
+            })
+
+
         
-@method_decorator(csrf_exempt, name='dispatch')
-class OpenNews(View):
-    def post(self, request, *args, **kwargs):
-        try:
-            raw_body = request.body.decode('utf-8')
-            
-            data = json.loads(request.body)
-            
-            id = data.get("id")
-            topic = data.get("topic")
-            page = data.get("page")
-
-            news_object = NewsDate.objects.filter(id=id).first()
-
-            if news_object is None:
-                logger.warning(f'Новость с ID {id} не найдена')
-                return JsonResponse({'error': 'Статья не найдена'}, status=404)
-            
-            session_data = {
-                'news_id':id,
-                'title': news_object.title,
-                'image_url': news_object.image_url,
-                'main_text': news_object.main_text,
-                'author': news_object.author,
-                'source': news_object.source,
-                'views': news_object.views,
-                'topic': news_object.topic,
-                'page': page,
-            }
-
-            if news_object.created_at:
-                session_data['created_at'] = news_object.created_at.isoformat()
-            else:
-                session_data['created_at'] = None
-                           
-            request.session['news_card'] = session_data
-
-            redirect_url = reverse('open_news')
-            
-            response_data = {
-                'success': True,
-                'redirect_url': redirect_url  
-            }
-            
-            return JsonResponse(response_data)
-            
-        except json.JSONDecodeError as e:
-            logger.error(f'Ошибка парсинга JSON: {e}')
-            return JsonResponse({'error': 'Неверный формат данных'}, status=400)
-        
-        except Exception as e:
-            logger.error(f'Неожиданная ошибка: {e}', exc_info=True)
-            return JsonResponse({'error': 'Внутренняя ошибка сервера'}, status=500)
-
 class NewsCardOpen(View):
-    def get(self, request ,*args, **kwargs):
+    def get(self, request, id_news=None, *args, **kwargs):
 
-        news_card = request.session.get('news_card', {})
+        if id_news is None:
+            return render(
+            request,
+            "pages-html/not-more-info-news.html",
+            context={
+                "error": "Не указан идентификатор новости",
+                "status_code": 400
+            }
+        )
+    
+        if not str(id_news).isdigit():
+            return render(
+            request,
+            "pages-html/not-more-info-news.html", 
+            context={
+                'error': f"Идентификатор новости должен быть числом. Получено: {id_news}",
+                'status_code': 400
+            }
+        )
 
-        if 'news_card' in request.session:
-
-            news = NewsDate.objects.filter(id=news_card.get('news_id',1)).first()            
-
-            likes_count = LikeNews.objects.filter(news=news).all()
-
+        try:
+            news_object = NewsDate.objects.get(id=id_news)
             return render(
                 request,
-                'pages-html/more-information-new.html', 
-                context={
-                'news_id':news_card.get('news_id',1),   
-                'title' : news_card.get('title',"Специальный выпуск"),
-                'image_url' : news_card.get('image_url',"К сожалению картинка не сохранилась"),
-                'main_text' :news_card.get('main_text',"Новость не найдена"),
-                'author' : news_card.get('author',"Автор не орпеделён"),
-                'source' : news_card.get('source',"Неизвестный источник"),
-                'views' : int(news_card.get('views',0)),
-                'topic' : news_card.get('topic',""),
-                'created_at' :news_card.get('created_at',"дата публикации неизвестна"),
-                'page': news_card.get('page',"/"),
-                'likes_count':len(likes_count),
-                })
-        else:
+            'pages-html/more-information-new.html', 
+            context= {
+            'news_id':id,
+            'title': news_object.title,
+            'image_url': news_object.image_url,
+            'main_text': news_object.main_text,
+            'author': news_object.author,
+            'source': news_object.source,
+            'views': news_object.views,
+            'topic': news_object.topic,
+        }
+    )
+        except NewsDate.DoesNotExist:
             return render(
-                request,
-                'pages-html/not-more-information-news.html'
-            )
+                    request,
+                    "pages-html/not-more-info-news.html", 
+                    context={
+                        'error': f"Идентификатор новости не существует. Получено: {id_news}",
+                        'status_code': 400
+                    })
 
+    
 
 class NewsLike(View):
 
