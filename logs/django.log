@@ -2614,3 +2614,7 @@ INFO 2025-10-21 17:22:18,559 basehttp 14700 3284 "GET /like-news/ HTTP/1.1" 200 
 INFO 2025-10-21 17:22:36,718 basehttp 14700 3284 "POST /api/news/likes_fro_card HTTP/1.1" 200 21
 INFO 2025-10-21 17:22:38,093 basehttp 14700 3284 "POST /api/news/likes_fro_card HTTP/1.1" 200 21
 INFO 2025-10-21 17:22:51,982 basehttp 14700 3284 "GET /like-news/ HTTP/1.1" 200 22800
+INFO 2025-10-21 17:47:00,935 autoreload 2896 17012 Watching for file changes with StatReloader
+INFO 2025-10-21 17:47:02,398 basehttp 2896 7156 "GET / HTTP/1.1" 200 99144
+INFO 2025-10-21 17:48:43,159 autoreload 2896 17012 C:\Users\Ilia\news-reports\newsReports\settings.py changed, reloading.
+INFO 2025-10-21 17:48:43,923 autoreload 9056 16712 Watching for file changes with StatReloader
