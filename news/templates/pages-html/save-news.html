@@ -1,13 +1,17 @@
 
 {% extends './base.html' %}
 
-{% block title %} Main Page {% endblock %}
+{% block title %} {{title}} {% endblock %}
 
-{% block body %} 
-<div>
-    главная страница 
-</div>
-{% endblock body%}
+{% block body %}
+    {% if all_news %}
+        {% for data in all_news %}
+            {% include 'components/card.html' %}
+        {% endfor %}
+    {% else %}
+        <p>Пока новостей нет</p>    
+    {% endif %}
+{% endblock body %}
 
 <style>
 

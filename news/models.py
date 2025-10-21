@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import random
 
 data_from_parser_page = [...]
 
@@ -10,6 +11,7 @@ class NewsDate(models.Model):
     main_text = models.TextField(blank=True, default='')
     author = models.CharField(max_length=500, default='Неизвестен')
     source = models.CharField(max_length=200, default='mk.ru')
+    likes = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
     topic = models.CharField(max_length=100, default='general')
     save_peaple_id = models.CharField(max_length=100, default='parser')

@@ -1,70 +1,4 @@
-<div class="news-card">
-    <div class="card-image">
-        {% if data.image_url %}    
-            <img src="{{ data.image_url }}" alt="{{ data.title }}" class="card-img">
-        {% else %}
-            <div class="no-image">
-                <span>📷</span>
-                <p>Изображение не найдено</p> 
-            </div>
-        {% endif %}       
-    </div>
-    
-    <div class="card-content">
-        <h5 class="card-title">{{ data.title }}</h5>
-        
-        <div class="card-meta">
-            <div class="meta-item">
-                {{ data.author|safe}}
-            </div>
-            
-            <div class="meta-item">
-                <span class="icon">🌐</span>
-                <span class="source"><a href="{{ data.source}}">Источник</a></span>
-            </div>
-            
-            <div class="meta-item">
-                <span class="icon">👁️</span>
-                <span>{{ data.views|default:0 }}</span>
-            </div>
-            
-            <div class="meta-item">
-                <span class="icon">🕒</span>
-                <time>{{ data.created_at|date:"d.m.Y H:i" }}</time>
-            </div>
-        </div>
-        <div class="card-actions">
-            <button class="btn-read"
-                type="button"
-                data-id="{{ data.id }}"
-                onclick="handleReadClick(this)"
-                >Читать</button>
-            {% if user.is_authenticated %}
-            <button class="btn-save" 
-                title="Сохранить"
-                data-id="{{data.id}}">💾</button>
-            <div class="meta-item">
-                <button 
-                class="btn btn-outline-danger btn-custom likeBtn {% if data.id in likes_id %} liked {% endif %}"
-                data-id="{{data.id}}">
-                    ❤️ <span id="likeCount" class="like-count">{{data.likes}}</span>
-                </button>   
-            </div>
-            {% endif %} 
-        </div>
-    </div>
-</div>
 
-<script>
-// остальная логика по обработке кликов размещена в base.html
-async function handleReadClick(button){
-    const data_id= button.getAttribute('data-id')
-    window.location.href = `/open-news/${data_id}/`;
-        
-}
-</script>
-
-<style>
 .news-card {
     display: flex;
     flex-direction: column;
@@ -210,5 +144,3 @@ async function handleReadClick(button){
         grid-template-columns: 1fr;
     }
 }
-</style>
-

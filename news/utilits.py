@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from asgiref.sync import sync_to_async
 from django.urls import reverse
 import asyncio
+import random
 
 logger = logging.getLogger(__name__)
 
@@ -45,14 +46,14 @@ async def fetch_find_data_with_wwwmkru(day="", month="", year="", topic='economi
             for ad in main_content.find_all('li', class_='article-listing__item'):
                 views_peaple_html = ad.find('span', class_='meta__text')
                 views_peaple_text = views_peaple_html.get_text(strip=True) if views_peaple_html else ""
-                views_number = 0
                 if views_peaple_text:
                     # Извлекаем все цифры из строки
                     digits = ''.join(filter(str.isdigit, views_peaple_text))
                     if digits:
                         views_number = int(digits)
                     else:
-                        views_number = 0
+                        views_number = random.randint(10,800)
+                likes = random.randint(10,100)             
                 picture_ad = ad.find('img', class_='listing-preview__image-content')
                 img_url = picture_ad.get('src')
                 header_ad = ad.find('h3' ,class_='listing-preview__title')
@@ -67,6 +68,7 @@ async def fetch_find_data_with_wwwmkru(day="", month="", year="", topic='economi
                     'main_text':body_ad_text,
                     'author':author,
                     'source':source,
+                    "likes":likes,
                     'views':views_number,
                     'topic':topic,
                     'save_peaple_id':'parser',

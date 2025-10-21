@@ -98,7 +98,7 @@ main {
     justify-content: center;
 }
 .btn-pagination{
-    border: 1px, solid, black;
+    border: 1px, solid, rgb(228, 226, 226);
     background: linear-gradient(135deg,  #3855d5 0%, #7a2bc9 100%);
     height: 80%;
     color: blanchedalmond;
@@ -124,6 +124,12 @@ main {
 }
 .current{
     background: #1da4f2;
+}
+
+@media (max-width: 442px ){
+    .btn-page-number{
+    width:7%;
+}
 }
 
 
@@ -189,31 +195,315 @@ main {
     margin: 10px auto;
 }
 
+.display-none{
+    display: none;
+}
+
 </style>
 
 
 
 <script>
-     // для навбара 
-    document.addEventListener('DOMContentLoaded', function() {
-       
-        const correntPath = document.location.pathname
-        const selectorsNavLink =  document.querySelectorAll('.nav-link')
+class LikesAndSavesSystem{
 
-        selectorsNavLink.forEach(link =>{
-            if(link.href.includes(correntPath)){
-                link.classList.add('active')
+    constructor() {
+        this.userLike = new Set();
+        this.userSave = new Set();
+        this.lengthuserLike = 0 
+        this.lengthuserSave= 0 
+        this.initialization = false;
+    }
+
+    async init(){
+        if (this.initialization) return;
+        const likes = await LoadUserLikes();
+        const saves = await loadSaveCards();
+        this.userLike = new Set(likes);
+        this.userSave = new Set(saves);
+        this.lengthuserLike = this.userLike.size
+        this.lengthuserSave = this.userSave.size
+        this.initialization = true;
+        this.UpdateAllLikesButtons();
+        this.UpdateAllSaveButtons();
+        this.UpdateNavbarCount();
+        this.bindEvents();
+        console.log("данные лайков обновлены ")
+    }
+
+    hasLiked(newsId){
+        if (this.userLike.has(parseInt(newsId))){
+            return true;
+        }
+        return false;
+    }
+
+    hesSaved(newsId){
+        if (this.userSave.has(parseInt(newsId))){
+            return true;
+        }
+        return false;
+    }
+
+    UpdateNavbarCount(){
+        const elementCountLikesAndSaved = document.querySelector(".count-saved-liked-card")
+        const elementCountLikes = document.querySelector(".count-like-card")
+        const elementCountSaved = document.querySelector(".count-save-card")
+
+        if(this.lengthuserLike + this.lengthuserSave > 0){
+            elementCountLikesAndSaved.classList.remove("display-none")
+            elementCountLikesAndSaved.innerHTML = `<span>${this.lengthuserLike + this.lengthuserSave}</span>`;
+            if (this.lengthuserLike>0){
+                elementCountLikes.classList.remove("display-none")
+                elementCountLikes.innerHTML = `<span>${this.lengthuserLike}</span>`;
+            }else{
+                elementCountLikes.classList.add("display-none")
+            }
+            if (this.lengthuserSave>0){
+                elementCountSaved.classList.remove("display-none")
+                elementCountSaved.innerHTML = `<span>${this.lengthuserSave}</span>`;
+            }else{
+                elementCountSaved.classList.add("display-none")
+            }
+        }else{
+            elementCountLikesAndSaved.classList.add("display-none")
+        }
+    }
+    UpdateAllLikesButtons(){
+        document.querySelectorAll(".likeBtn").forEach(button =>{
+            const newsId = button.dataset.id;
+            const isLiked = this.hasLiked(newsId)
+            this.UpdateLikeButton(button,isLiked,newsId)
+        })
+    }
+
+    UpdateLikeButton(button,isLiked,newsId){
+        if (isLiked){
+            button.classList.add('liked');
+            button.innerHTML = `❤️ <span id="likeCount" class="like-count">${this.getlikeCount(newsId)+1}</span>`;
+        }
+        else{
+            button.classList.remove('liked');
+            button.innerHTML = `🤍 <span id="likeCount" class="like-count">${this.getlikeCount(newsId)-1}</span>`
+        }
+    }
+
+    UpdateAllSaveButtons(){
+        document.querySelectorAll(".btn-save").forEach(button =>{
+            const newsId = button.dataset.id;
+            const isSaved = this.hesSaved(newsId)
+            this.UpdateSaveButtons(button,isSaved,newsId)
+        })
+    }
+
+    UpdateSaveButtons(botton, isSaved, newsId){
+        if (isSaved){
+            botton.classList.add("display-none") // дописать этот стиль,чтобы был по верх других и отображадлсяя статичной галкой(пока hidden)
+        }
+        else{
+            botton.classList.remove("display-none")
+        }
+    }
+
+    getlikeCount(newsId){
+        const countLike = parseInt(document.querySelector(`[data-id="${newsId}"] .like-count`)?.textContent) || 0
+        return countLike
+    }
+
+    async changeCount(selector, bool_action){
+        let element =  document.querySelector(selector)
+        let count = parseInt(element?.textContent) || 0
+        if(!bool_action){
+            count = count + 1
+        }else{
+            count = count - 1
+        }
+        element.textContent = count
+    }
+
+    bindEvents(){
+
+        document.addEventListener('click', (e) =>{
+            if(e.target.classList.contains('likeBtn')){              
+                this.toggleLike(e.target);
+            }
+            if(e.target.classList.contains('btn-save')){
+                this.toggleSave(e.target)
             }
         })
-        
-       const selectorSearch = document.querySelector('input[name=q]')
-        if(selectorSearch){
-            document.addEventListener('focus', () => {
-                selectorSearch.parentElement.style.transform = 'scale(1.09rem)'
+    }
+
+    // долписать изменения в localStorage
+    async toggleLike(button){ 
+        const isLiked =  button.classList.contains("liked")
+        const newsId = button.dataset.id;
+        let response; 
+        try {
+            response = await fetch("/api/news/likes_fro_card", {
+                method: "POST", 
+                headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": getCSRFToken() 
+            },
+            body: JSON.stringify({
+                "id": newsId,
+                "isLiked":!isLiked
             })
-            document.addEventListener('blur', () => {
-                selectorSearch.parentElement.style.transform = 'scale(1rem)'
-            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
-    });
-    </script>
+
+        const result = await response.json();
+        
+        if (result.status === "success") {
+            this.UpdateLikeButton(button, !isLiked, newsId);
+            if (isLiked){
+                let listLikes = JSON.parse(localStorage.getItem('userLikes')) || [] 
+                listLikes = listLikes.filter(id=> parseInt(id) !== parseInt(newsId));
+                localStorage.setItem('userLikes', JSON.stringify(listLikes))
+            }else{
+                let listLikes = JSON.parse(localStorage.getItem('userLikes')) || []
+                listLikes.push(parseInt(newsId))
+                localStorage.setItem('userLikes', JSON.stringify(listLikes))
+            }
+            await this.changeCount(".count-like-card", isLiked);
+            await this.changeCount(".count-saved-liked-card", isLiked); 
+            console.log("Вы лайкнули новость = )");
+        } else {
+            console.log("Ошибка от сервера:", result.error);
+        }
+        
+    } catch(error) {
+        console.log("Не удалось поставить лайк на новость:", error);
+    }
+}
+    async toggleSave(button){
+        const newsId = button.dataset.id;
+        const isSaved = this.hesSaved(newsId)
+        let response;
+        try{
+           response = await fetch("/api/news/save",
+                {
+                    method: "POST", 
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRFToken": getCSRFToken() 
+                    },
+                    body:JSON.stringify(
+                        {
+                            "newsId":newsId,
+                            "isSaved":!isSaved,
+                        }
+                    )
+                }
+           )
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            if (isSaved){
+                button.classList.remove("display-none");
+                let listSavedNews =JSON.parse(localStorage.getItem("saved_cards"));
+                listSavedNews = listSavedNews.filter(id => parseInt(id) !== parseInt(newsId));
+                localStorage.setItem("saved_cards",JSON.stringify(listSavedNews));
+            }else{
+                button.classList.add("display-none");
+                let listSavedNews =JSON.parse(localStorage.getItem("saved_cards"));
+                listSavedNews.push(parseInt(newsId));
+                localStorage.setItem("saved_cards",JSON.stringify(listSavedNews))};
+            await this.changeCount(".count-save-card", isSaved);
+            await this.changeCount(".count-saved-liked-card", isSaved);
+        }catch{
+            console.log("Не удалось отправить запрос")
+        }
+    }
+}
+
+async function LoadUserLikes() {
+    const cachedLikes = localStorage.getItem("userLikes")
+
+    if (cachedLikes){
+        console.log("Данные полльзователя по лайкаv уже сохранены");
+        return JSON.parse(cachedLikes)
+    }
+    try{
+        const response = await fetch('api/news/like');
+        
+        if(!response.ok){
+            throw new Error("ошибка при отправке get запроса для выдачи лайков пользователя")
+        }
+        const data = await response.json();
+        localStorage.setItem('userLikes', JSON.stringify(data.likes_id||[]))
+        console.log("ошибка здесь")
+        return data.likes_id || [];
+    }catch{
+        consol.log("в LoadUserLIkes произошла ошибка");
+        return []
+    }
+}
+
+async function loadSaveCards() {
+    const listSaveCard = localStorage.getItem("saved_cards")
+    if (listSaveCard){
+        return JSON.parse(listSaveCard)
+    }
+    else{
+        try{
+            const respons = await fetch("/api/news/save")
+            if (respons.ok){
+                localStorage.setItem("saved_cards", JSON.stringify(respons.newsIds||[]))
+                return JSON.parse(respons.newsIds)
+            }else{
+                console.log("При загрузке новостей произошла ошибка")
+                return []
+            }
+        }catch{
+            console.log("ошибка при отправке запроса")
+        }
+    }
+    
+}
+
+function getCSRFToken() {
+    const name = 'csrftoken';
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+};
+
+const likesSystem = new LikesAndSavesSystem()
+  
+document.addEventListener('DOMContentLoaded', async function() {
+       
+    const correntPath = document.location.pathname
+    const selectorsNavLink =  document.querySelectorAll('.nav-link')
+
+    selectorsNavLink.forEach(link =>{
+        if(link.href.includes(correntPath)){
+            link.classList.add('active')
+        }
+    })
+        
+    const selectorSearch = document.querySelector('input[name=q]')
+    if(selectorSearch){
+        document.addEventListener('focus', () => {
+            selectorSearch.parentElement.style.transform = 'scale(1.09rem)'
+        })
+        document.addEventListener('blur', () => {
+            selectorSearch.parentElement.style.transform = 'scale(1rem)'
+        })
+    }
+
+    await likesSystem.init();
+})
+</script>

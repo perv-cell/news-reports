@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.urls import reverse
-from news.models import NewsDate, SaveNews, LikeNews, VeiwsNews
+from news.models import NewsDate, SaveNews, LikeNews
 from django.core.paginator import Paginator
 from news.utilits import generate_pagination_urls
 from django.utils import timezone
@@ -22,14 +22,13 @@ logger = logging.getLogger(__name__)
 
 class MainPage(View):
     def get(self,request,news_page=None,*args ,**kwargs):
-        current_path = request.path
         page_number = news_page or 1
-        all_news = NewsDate.objects.all().order_by('-created_at','-views')
+        all_news = NewsDate.objects.all().order_by('-created_at','-views')        
         count_news = 15
         paginator = Paginator(all_news,count_news)
         count_page = paginator.count
         page_obj =paginator.get_page(page_number)
-        
+
         pagination_urls = generate_pagination_urls(page_obj, paginator.num_pages)
 
         return render(
@@ -92,6 +91,7 @@ class NewsCardOpen(View):
             'source': news_object.source,
             'views': news_object.views,
             'topic': news_object.topic,
+            'likes':news_object.likes,
         }
     )
         except NewsDate.DoesNotExist:
@@ -103,46 +103,172 @@ class NewsCardOpen(View):
                         'status_code': 400
                     })
 
-    
+class ToggleNewsLike(View):
+    def post(self, request, *args, **kwargs):
+        data = json.loads(request.body)
+        id = data.get("id")
+        isLiked = data.get("isLiked")
+        user = request.user
+        try:
+            news = NewsDate.objects.get(id=id)
+            if not isLiked:
+                news.likes-=1
+                news.save()
+                LikeNews.objects.filter(users=user,news=news).delete()
+            else:
+                news.likes+=1
+                news.save()
+                LikeNews.objects.create(users=user,news=news)
+            return JsonResponse({
+                "status":"success",}
+            )
+
+        except Exception as e:
+            return JsonResponse({
+                "status":"error",
+                "error":f"Ошибка сервера при лайке новости {e}"}
+            )
+
 
 class NewsLike(View):
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:  
+            return JsonResponse(
+               {
+                   'succes': False,
+                   'error': "Пользователь не авторизован"
+               } 
+            )
+        user = request.user
+        try:
+            objectsLikesNews = LikeNews.objects.filter(user=user)
+            listIdNews = [odjnews.news.id for odjnews in list(objectsLikesNews)]
+            return JsonResponse(
+               {
+                   'succes': True,
+                   'likes_id':listIdNews
+               } 
+            )
+        except:
+            return JsonResponse(
+               {
+                   'succes': False,
+                   'error': "Ошибка при поиске лайнкутых новостей в бд"
+               }
+            )
+        
+    def post(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return JsonResponse(
+               {
+                   'succes': False,
+                   'error': "Пользователь не авторизован"
+               } 
+            )
 
+        news_id = request.data.get("news_id")
+        action = request.data.get("action")
+        user = request.user
+
+        try:
+            news  = NewsDate.objects.get(id=news_id)
+            like, create  =  LikeNews.objects.get_or_create(news=news, user=user)
+            if action == 'like':
+                if create:
+                    news.likes+=1
+                    news.save()
+                    return JsonResponse({'status': 'liked', 'likes_count': news.likes_count})
+                else:
+                    return JsonResponse({'status': 'already_liked'})
+             
+            else:
+                news  = NewsDate.objects.get(id=news_id)
+                LikeNews.objects.filter(news=news, user=user).delete()
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'error':f"Детали ошибки: {e}"})
+
+
+    
+class NewsSave(View):
+    def get(self, request, *args, **kwargs):
+
+        if not request.user.is_authenticated:
+            return JsonResponse({
+                "status": "error",
+                "error": "Требуется авторизация"
+            }, status=401)
+
+        try:
+            news_ids = SaveNews.objects.filter(users=request.user)\
+                                      .values_list('news_id', flat=True)
+
+            return JsonResponse({
+                "status": "success",
+                "newsIds": list(news_ids)  
+            })
+
+        except Exception as e:
+            return JsonResponse({
+                "status": "error",
+                "error": f"Ошибка при получении данных: {str(e)}"
+            }, status=500)
+        
     def post(self, request, *args, **kwargs):
         try:
             data = json.loads(request.body)
-            news_id = data.get('news_id')
-            action = data.get('action')
+            newsId = data.get("newsId")
+            isSave = data.get("isSaved")
+            user = request.user
 
-            news = NewsDate.objects.filter(id=news_id).first()
-            if not news:
-                return JsonResponse({'status': 'error', 'message': 'News not found'}, status=404)
+            if not user.is_authenticated:
+                return JsonResponse({
+                    "status": "error",
+                    "error": "Требуется авторизация"
+                }, status=401)
 
-            if action == 'like':
-                logger.debug(f"новость {news_id} лайкнули")
-                LikeNews.objects.create(users=request.user, news=news)
+            if not newsId or isSave is None:
+                return JsonResponse({
+                    "status": "error",
+                    "error": "Отсутствуют обязательные поля: newsId или isSaved"
+                }, status=400)
+
+            news = NewsDate.objects.get(id=newsId)
+
+            if isSave:
+                save_news, created = SaveNews.objects.get_or_create(
+                    news=news,
+                    users=user, 
+                    
+                )
+                action = "saved" if created else "already_exists"
             else:
-                logger.debug(f"новость {news_id} дизлайкнули")
-                LikeNews.objects.filter(users=request.user, news=news).delete()
-            
-            likes_count = news.like_news.count()
-            
-            return JsonResponse({
-                'status': 'success', 
-                'likes_count': likes_count,
-                'action': action
-            })
-            
-        except Exception as e:
-            logger.error(f"Error in like view: {e}")
-            return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+                deleted_count = SaveNews.objects.filter(users=user, news=news).delete()[0]
+                action = "deleted" if deleted_count > 0 else "not_found"
 
-class NewsSave(View):
-    def post(self, request):
-        data = json.loads(request.body)
-        news_id = data.get('news_id')
-        action = data.get('action')
+            return JsonResponse({
+                "status": "success",
+                "action": action,
+                "saved": isSave
+            })
         
-        return JsonResponse({'status': 'success'})
+        except NewsDate.DoesNotExist:
+            return JsonResponse({
+                "status": "error",
+                "error": "Новость не найдена"
+            }, status=404)
+        
+        except json.JSONDecodeError:
+            return JsonResponse({
+                "status": "error",
+                "error": "Неверный формат JSON"
+            }, status=400)
+
+        except Exception as e:
+            return JsonResponse({
+                "status": "error",
+                "error": f"Ошибка при сохранении: {str(e)}"
+            }, status=500)
+
 
 class NewsCommentView(View):
     def post(self, request):
@@ -153,6 +279,56 @@ class NewsCommentView(View):
         # Ваша логика комментариев
         return JsonResponse({'status': 'success'})        
 
+# доделать страницу сохраннённых новостей 
+class SaveNewsPage(View):
+    
+    def get(self,request,news_page=None,*args ,**kwargs):
+        page_number = news_page or 1
+        user = request.user
+        news_save = list(objectlike.news.id for objectlike in SaveNews.objects.filter(users=user))
+        all_news = NewsDate.objects.filter(id__in=news_save)     
+        count_news = 15
+        paginator = Paginator(all_news,count_news)
+        count_page = paginator.count
+        page_obj =paginator.get_page(page_number)
+
+        pagination_urls = generate_pagination_urls(page_obj, paginator.num_pages)
+
+        return render(
+        request,
+        'pages-html/save-news.html',
+        context={
+            'title': 'Сохранённые новости',
+            'all_news':page_obj,
+            'current_page': page_number,
+            'total_pages':count_page,
+            'pagination_urls': pagination_urls,
+        })
+
+class LikeNewsPage(View):
+    
+    def get(self,request,news_page=None,*args ,**kwargs):
+        page_number = news_page or 1
+        user = request.user
+        news_save = list(objectlike.news.id for objectlike in LikeNews.objects.filter(users=user))
+        all_news = NewsDate.objects.filter(id__in=news_save)     
+        count_news = 15
+        paginator = Paginator(all_news,count_news)
+        count_page = paginator.count
+        page_obj =paginator.get_page(page_number)
+
+        pagination_urls = generate_pagination_urls(page_obj, paginator.num_pages)
+
+        return render(
+        request,
+        'pages-html/save-news.html',
+        context={
+            'title': 'Избранное',
+            'all_news':page_obj,
+            'current_page': page_number,
+            'total_pages':count_page,
+            'pagination_urls': pagination_urls,
+        })
 
 
 # --------------- новости по датам  ---------------------- 
@@ -348,16 +524,7 @@ class SportsNews(View):
             'total_pages':count_page,
             'pagination_urls': pagination_urls
         }) 
-# --------------- при входи порльзователя при сохранении в избранное ссылки на новости будут сохраняться  ----------------------   
-class SaveNews(View):
-    def get(self,request, *args ,**kwargs):
-        return render(
-            request,
-            'pages-html/save-news.html',
-            context={
-                'title': 'Сохранённые новости'
-                }
-        )
+
 # --------------- для входа ----------------------     
 class SignIn(View):
     def get(self,request ,*args ,**kwargs):

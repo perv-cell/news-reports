@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>{{title}}</title>
+</head>
+<body>
+    <div class="body-base">
+        {% include 'components/navbar.html' %}
+            {% block body %}
+            {% endblock %}
+        {% include 'components/pagination.html' %}
+        {% include 'components/footer.html' %}
+</body>
+<style>
+
+.pagination{
+    width: 100%;
+    height: 40px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+}
+.btn-pagination{
+    border: 1px, solid, black;
+    background: linear-gradient(135deg,  #3855d5 0%, #7a2bc9 100%);
+    height: 80%;
+    color: blanchedalmond;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.btn-pagination:hover{
+    transform: scale(1.05);
+    background: linear-gradient(135deg,  #7a2bc9 0%, #3855d5 100%);
+}
+.pagination-left-button{
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    width: 7%;
+}
+.pagination-right-button{
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    width: 7%;
+}   
+.btn-page-number{
+    width:3%;
+}
+.current{
+    background: #1da4f2;
+}
+
+@media (max-width: 442px ){
+    .btn-page-number{
+    width:7%;
+}
+}
+
+
+.search-header {
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 1rem;
+    width: 50%;
+    height: 40px;
+    background: rgba(245, 245, 245, 0.612);
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+    text-justify: center;
+}
+
+.search-form-container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.search-results {
+    margin-top: 2rem;
+}
+.text-muted{
+    font-size: 18px;
+    }
+
+.text-for-subheader{
+    display: flex;
+    justify-self: center;
+    text-align: justify;
+    text-justify: inter-word;
+    width: 80%;
+    transition: all 0.3s ease;
+}
+.header-text-for-subheader:hover{
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+}
+
+.headers:hover{
+    transition: all 0.3s ease;
+    transform: scale(1.03);
+    background: #a4b1e8;
+}    
+.alert {
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+    text-justify: center;
+    height: auto;
+    width: 70%;
+    height: 80%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top:30px;
+    margin-bottom:10px;
+}
+.button-registration{
+    margin: 10px auto;
+}
+
+</style>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+       
+        const correntPath = document.location.pathname
+        const selectorsNavLink =  document.querySelectorAll('.nav-link')
+
+        selectorsNavLink.forEach(link =>{
+            if(link.href.includes(correntPath)){
+                link.classList.add('active')
+            }
+        })
+        
+       const selectorSearch = document.querySelector('input[name=q]')
+        if(selectorSearch){
+            document.addEventListener('focus', () => {
+                selectorSearch.parentElement.style.transform = 'scale(1.09rem)'
+            })
+            document.addEventListener('blur', () => {
+                selectorSearch.parentElement.style.transform = 'scale(1rem)'
+            })
+        }
+    });
+    </script>

@@ -69,6 +69,7 @@ class Command(BaseCommand): # класс для парсинга данных и
             'main_text': news_item.get('main_text') or '',
             'author': news_item.get('author') or 'Неизвестен',
             'source': news_item.get('source') or 'mk.ru',
+            'likes':news_item.get('likes') or 0 , 
             'views': news_item.get('views', 0),
             'topic': news_item.get('topic') or 'general',
             'save_peaple_id': news_item.get('save_peaple_id') or 'parser'

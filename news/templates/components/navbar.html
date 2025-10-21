@@ -64,12 +64,13 @@
             <div class="navbar-nav">
                 {% if user.is_authenticated %}
                 <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                        <i class="bi bi-person-circle me-1"></i>{{ user.username }}
+                    <a class="nav-link dropdown-toggle row-element" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="bi bi-person-circle me-1">{{ user.username }}</i>
+                        <div class="count-saved-liked-card display-none"></div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                         <li><a class="dropdown-item" href="{% url 'save_news' %}">Сохраненное</a></li>
-                        <li><a class="dropdown-item" href="{% url 'save_news' %}">Нравиться</a></li>
+                        <li><a class="dropdown-item row-element" href="{% url 'save_news' %}">Сохраненное <div class="count-save-card display-none"></div></a></li>
+                        <li><a class="dropdown-item row-element" href="{% url 'like_news' %}">Нравится <div class="count-like-card display-none"></div></a></li>
                         <li><a class="dropdown-item" href="{% url 'save_news' %}">Настройки</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <form action="{% url 'logout' %}" method="post" style="display: inline;">
@@ -153,5 +154,45 @@
     .navbar-nav {
         margin-top: 10px;
     }
+};
+.count-saved-liked-card{
+    background-color: rgba(255, 77, 0, 0.471);
+    border-radius: 5px;
+    display: flex;
+    width: 20px;
+    height: 20px;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+    font-size: 13px;
+}
+
+.count-save-card{
+    background-color: rgb(255, 0, 0);
+    border-radius: 5px;
+    display: flex;
+    width: 20px;
+    height: 20px;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+    font-size: 13px;    
+}
+.count-like-card{
+    background-color: rgba(255, 0, 0, 0.955);
+    border-radius: 7px;
+    display: flex;
+    width: 20px;
+    height: 20px;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+    font-size: 13px; 
+}
+.row-element{
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    gap:5px
 }
 </style>
