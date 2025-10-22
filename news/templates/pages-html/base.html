@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="google-site-verification" content="P1-wUN7Fx2j-RL3Xvaick8kfvMz4zmGrew5sPeRRFhs" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -329,10 +330,43 @@ class LikesAndSavesSystem{
             if(e.target.classList.contains('btn-save')){
                 this.toggleSave(e.target)
             }
+            if(e.target.classList.contains("delete-save")){
+                this.toggleDeletSave(e.target)
+            }
         })
     }
+    
+    async toggleDeletSave(button){
+        // доделать при отправке запроса на удаления ничего не выдаёт, 
+        const news_id = button.dataset.id
+        console.log(`${news_id}`)
+        try{    
+            const respons = await fetch(
+                "/api/delet-save-news",{
+                    method:"POST",
+                    headers:{
+                        "Content-Type":"application/json",
+                        "X-CSRFToken":getCSRFToken()},
+                    body:JSON.stringify({
+                        "news_id":news_id
+                    })
+                }
+            )
+            if(!respons.ok){
+                throw new Error(`Ошибка при отправке запроса`)
+            }
+            const data = await respons.json()
+            if(data.status === "success"){
+                const news_card = button.closest(".news-card")
+                console.log("запрос на удаление отправлен ")
+                news_card?.remove();
+            }
+        }catch{
+            console.log(`Ошибка при отправке запроса`)
+        }
 
-    // долписать изменения в localStorage
+        //await changeCount(".delete-save", )
+    }
     async toggleLike(button){ 
         const isLiked =  button.classList.contains("liked")
         const newsId = button.dataset.id;
